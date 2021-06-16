@@ -2,9 +2,9 @@ package vaccimate.users;
 
 public class User {
 
-    private String firstName;
-    private String lastName;
-    private long id;
+    protected String firstName;
+    protected String lastName;
+    protected long id;
 
     public User(String firstName, String lastName, long id) {
         this.firstName = firstName;

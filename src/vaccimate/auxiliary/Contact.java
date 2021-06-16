@@ -1,4 +1,4 @@
-package vaccimate.helpers;
+package vaccimate.auxiliary;
 
 public class Contact {
 

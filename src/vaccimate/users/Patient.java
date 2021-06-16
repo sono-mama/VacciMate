@@ -1,7 +1,7 @@
 package vaccimate.users;
 
-import vaccimate.helpers.Address;
-import vaccimate.helpers.Contact;
+import vaccimate.auxiliary.Address;
+import vaccimate.auxiliary.Contact;
 
 public class Patient extends User {
 
