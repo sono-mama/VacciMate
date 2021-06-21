@@ -12,6 +12,7 @@ public class Main {
 	// write your code here
 
 
+
         Vaccine bioNTech = new Vaccine("Comirnaty", "Pfizer-BioNTech", 6, 2);
         Vaccine moderna = new Vaccine("Moderna Covid-19", "Moderna", 6, 2);
         Vaccine astraZeneca = new Vaccine("Covishield", "AstraZeneca", 12, 2);
@@ -40,6 +41,7 @@ public class Main {
         berlinVaccCenters[3] = new Timeslot(tempelhof, 30);
         berlinVaccCenters[4] = new Timeslot(messeBerlin, 30);
         berlinVaccCenters[5] = new Timeslot(velodrom, 30);
+
 
     }
 }
