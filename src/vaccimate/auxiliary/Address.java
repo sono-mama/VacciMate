@@ -3,28 +3,15 @@ package vaccimate.auxiliary;
 public class Address {
 
     private String streetName;
-    private int streetNo;
-    private int postalCode;
+    private String streetNo;
+    private String postalCode;
     private String city;
-    private String state;
 
-    public Address(String streetName, int streetNo, int postalCode, String city, String state) {
+    public Address(String streetName, String streetNo, String postalCode, String city) {
         this.streetName = streetName;
         this.streetNo = streetNo;
         this.postalCode = postalCode;
         this.city = city;
-        this.state = state;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "streetName='" + streetName + '\'' +
-                ", streetNo=" + streetNo +
-                ", postalCode=" + postalCode +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                '}';
     }
 
     public String getStreetName() {
@@ -35,19 +22,19 @@ public class Address {
         this.streetName = streetName;
     }
 
-    public int getStreetNo() {
+    public String getStreetNo() {
         return streetNo;
     }
 
-    public void setStreetNo(int streetNo) {
+    public void setStreetNo(String streetNo) {
         this.streetNo = streetNo;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
@@ -59,11 +46,13 @@ public class Address {
         this.city = city;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    @Override
+    public String toString() {
+        return "Address{" +
+                "streetName='" + streetName + '\'' +
+                ", streetNo='" + streetNo + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                '}';
     }
 }

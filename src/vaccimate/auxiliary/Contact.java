@@ -2,29 +2,29 @@ package vaccimate.auxiliary;
 
 public class Contact {
 
-    private int telephoneNo;
-    private int mobileNo;
+    private String telephoneNo;
+    private String mobileNo;
     private String email;
 
-    public Contact(int telephoneNo, int mobileNo, String email) {
+    public Contact(String telephoneNo, String mobileNo, String email) {
         this.telephoneNo = telephoneNo;
         this.mobileNo = mobileNo;
         this.email = email;
     }
 
-    public int getTelephoneNo() {
+    public String getTelephoneNo() {
         return telephoneNo;
     }
 
-    public void setTelephoneNo(int telephoneNo) {
+    public void setTelephoneNo(String telephoneNo) {
         this.telephoneNo = telephoneNo;
     }
 
-    public int getMobileNo() {
+    public String getMobileNo() {
         return mobileNo;
     }
 
-    public void setMobileNo(int mobileNo) {
+    public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 
@@ -39,8 +39,8 @@ public class Contact {
     @Override
     public String toString() {
         return "Contact{" +
-                "telephoneNo=" + telephoneNo +
-                ", mobileNo=" + mobileNo +
+                "telephoneNo='" + telephoneNo + '\'' +
+                ", mobileNo='" + mobileNo + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
