@@ -2,9 +2,11 @@ package vaccimate.presentationLayer;
 
 import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
-import vaccimate.process.Timeslot;
+import vaccimate.process.Appointment;
+import vaccimate.process.CalendarManager;
 import vaccimate.process.VaccinationSite;
 import vaccimate.process.Vaccine;
+import vaccimate.users.Patient;
 
 public class Main {
 
@@ -12,35 +14,52 @@ public class Main {
 	// write your code here
 
 
+        Vaccine[] vaccineArray = new Vaccine[3];
+        String[] vaccineName = {"Comirnaty", " Moderna Covid-19", "Covishield"};
+        String[] vaccineBrand = {"Pfizer-BioNTech", "Moderna", "AstraZeneca"};
+        int[] vaccineWaitingPeriod = {6, 6, 12};
 
-        Vaccine bioNTech = new Vaccine("Comirnaty", "Pfizer-BioNTech", 6, 2);
-        Vaccine moderna = new Vaccine("Moderna Covid-19", "Moderna", 6, 2);
-        Vaccine astraZeneca = new Vaccine("Covishield", "AstraZeneca", 12, 2);
-        Vaccine johnsonJohnson = new Vaccine("Janssen COVID-19 Vaccine", "Janssen Pharmaceutica", 0, 1);
+        for(int i = 0; i < 3; i++) {
+            vaccineArray[i] = new Vaccine(vaccineName[i], vaccineBrand[i], vaccineWaitingPeriod[i]);
+        }
 
-        Address arenaAdd = new Address("Eichenstr.", "4", "12435", "Berlin");
-        Address erikaHessAdd = new Address("Müllerstr.", "185", "13353", "Berlin");
-        Address tegelAdd = new Address("Saatwinklerdamm, Terminal C", "", "13405", "Berlin");
-        Address tempelhofAdd = new Address(" Tempelhoferdamm", "57", "12101", "Berlin");
-        Address messeAdd = new Address("Hammarskjöldplatz", "5", "14055", "Berlin");
-        Address velodromAdd = new Address("Paul-Heyse-Str.", "26", "10407", "Berlin");
+        // currently operating vaccination centers in Berlin. See: https://service.berlin.de/standorte/impfzentren/
+        Address[] addressArray = new Address[6];
+        String[] streetName = {"Eichenstr.", "Müllerstr.", "Saatwinklerdamm", "Terminal C", "Tempelhoferdamm", "Hammarskjöldplatz", "Paul-Heyse-Str."};
+        String[] streetNo = {"4", "185", "", "57", "5", "26"};
+        String[] postalCode = {"12435", "13353", "13405", "12101", "14055", "10407"};
+        String[] city = {"Berlin"};
+
+        for (int i = 0; i < 6; i++){
+            addressArray[i] = new Address(streetName[i], streetNo[i],postalCode[i], city[0]);
+        }
 
         Contact vaccSiteContact = new Contact("(030)9028-2200", "", "");
+        String[] vaccinationCenterNames = {"Arena Berlin", "Erika-Hess-Eisstadion", "Flughafen Tegel", "Flughafen Tempelhof", "Messe Berlin", "Velodrom"};
 
-        VaccinationSite arenaBerlin = new VaccinationSite("Arena Berlin", bioNTech, null, arenaAdd, vaccSiteContact);
-        VaccinationSite erikaHess = new VaccinationSite("Erika-Hess-Eisstadion", moderna, null, erikaHessAdd, vaccSiteContact);
-        VaccinationSite tegel = new VaccinationSite("Flughafen Tegel", bioNTech, moderna, tegelAdd, vaccSiteContact);
-        VaccinationSite tempelhof = new VaccinationSite("Flughafen Tempelhof", moderna, astraZeneca, tempelhofAdd, vaccSiteContact);
-        VaccinationSite messeBerlin = new VaccinationSite("Messe Berlin", bioNTech, null, messeAdd, vaccSiteContact);
-        VaccinationSite velodrom = new VaccinationSite("Velodrom", bioNTech, null, velodromAdd, vaccSiteContact);
+        VaccinationSite[] vaccinationSites = new VaccinationSite[6];
+        vaccinationSites[0] = new VaccinationSite(vaccinationCenterNames[0], vaccineArray[0], null, addressArray[0], vaccSiteContact);
+        vaccinationSites[1] = new VaccinationSite(vaccinationCenterNames[1], vaccineArray[1], null, addressArray[1], vaccSiteContact);
+        vaccinationSites[2] = new VaccinationSite(vaccinationCenterNames[2], vaccineArray[1], vaccineArray[0], addressArray[2], vaccSiteContact);
+        vaccinationSites[3] = new VaccinationSite(vaccinationCenterNames[3], vaccineArray[1], vaccineArray[2], addressArray[3], vaccSiteContact);
+        vaccinationSites[4] = new VaccinationSite(vaccinationCenterNames[4], vaccineArray[0], null, addressArray[4], vaccSiteContact);
+        vaccinationSites[0] = new VaccinationSite(vaccinationCenterNames[5], vaccineArray[0], null, addressArray[5], vaccSiteContact);
 
-        Timeslot[] berlinVaccCenters = new Timeslot[6];
-        berlinVaccCenters[0] = new Timeslot(arenaBerlin, 30);
-        berlinVaccCenters[1] = new Timeslot(erikaHess, 30);
-        berlinVaccCenters[2] = new Timeslot(tegel, 30);
-        berlinVaccCenters[3] = new Timeslot(tempelhof, 30);
-        berlinVaccCenters[4] = new Timeslot(messeBerlin, 30);
-        berlinVaccCenters[5] = new Timeslot(velodrom, 30);
+
+        CalendarManager calendar = new CalendarManager(10);
+
+
+
+
+
+
+
+
+
+        Address pat1Add = new Address("Musterstr.", "1", "12151", "Berlin");
+        Contact pat1Cont = new Contact("03032590909", "01764589901", "max.mustermann@web.de");
+        Patient pat1 = new Patient("Max", "Mustermann", 12345, pat1Add, 89, pat1Cont, true);
+
 
 
     }

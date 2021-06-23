@@ -10,17 +10,18 @@ public class Appointment {
     private Date date;
     private Patient patient;
     private VaccinationSite site;
-    private boolean firstAppointment;
-    private Appointment followUpAppointment;
     private Vaccine vaccine;
+    boolean isBooked;
 
-    public Appointment(int code, Date date, Patient patient, VaccinationSite site, boolean firstAppointment, Appointment followUpAppointment, Vaccine vaccine) {
+    public Appointment() {
+        this.isBooked = false;
+    }
+
+    public Appointment(int code, Date date, Patient patient, VaccinationSite site, Vaccine vaccine) {
         this.code = code;
         this.date = date;
         this.patient = patient;
         this.site = site;
-        this.firstAppointment = firstAppointment;
-        this.followUpAppointment = followUpAppointment;
         this.vaccine = vaccine;
     }
 
@@ -56,22 +57,6 @@ public class Appointment {
         this.site = site;
     }
 
-    public boolean isFirstAppointment() {
-        return firstAppointment;
-    }
-
-    public void setFirstAppointment(boolean firstAppointment) {
-        this.firstAppointment = firstAppointment;
-    }
-
-    public Appointment getFollowUpAppointment() {
-        return followUpAppointment;
-    }
-
-    public void setFollowUpAppointment(Appointment followUpAppointment) {
-        this.followUpAppointment = followUpAppointment;
-    }
-
     public Vaccine getVaccine() {
         return vaccine;
     }
@@ -87,8 +72,8 @@ public class Appointment {
                 ", date=" + date +
                 ", patient=" + patient +
                 ", site=" + site +
-                ", firstAppointment=" + firstAppointment +
-                ", followUpAppointment=" + followUpAppointment +
+                ", firstAppointment=" +
+                ", followUpAppointment=" +
                 ", vaccine=" + vaccine +
                 '}';
     }

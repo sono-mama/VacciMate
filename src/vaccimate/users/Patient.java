@@ -8,17 +8,13 @@ public class Patient extends User {
     private Address address;
     private int age;
     private Contact contact;
-    private String insuranceType;
-    private String insuranceName;
     private boolean allergies;
 
-    public Patient(String firstName, String lastName, long id, Address address, int age, Contact contact, String insuranceType, String insuranceName, boolean allergies) {
+    public Patient(String firstName, String lastName, long id, Address address, int age, Contact contact, boolean allergies) {
         super(firstName, lastName, id);
         this.address = address;
         this.age = age;
         this.contact = contact;
-        this.insuranceType = insuranceType;
-        this.insuranceName = insuranceName;
         this.allergies = allergies;
     }
 
@@ -52,22 +48,6 @@ public class Patient extends User {
         this.contact = contact;
     }
 
-    public String getInsuranceType() {
-        return insuranceType;
-    }
-
-    public void setInsuranceType(String insuranceType) {
-        this.insuranceType = insuranceType;
-    }
-
-    public String getInsuranceName() {
-        return insuranceName;
-    }
-
-    public void setInsuranceName(String insuranceName) {
-        this.insuranceName = insuranceName;
-    }
-
     public boolean isAllergies() {
         return allergies;
     }
@@ -82,8 +62,8 @@ public class Patient extends User {
                 "address=" + address +
                 ", age=" + age +
                 ", contact=" + contact +
-                ", insuranceType='" + insuranceType + '\'' +
-                ", insuranceName='" + insuranceName + '\'' +
+                ", insuranceType='" + '\'' +
+                ", insuranceName='" + '\'' +
                 ", allergies=" + allergies +
                 '}';
     }

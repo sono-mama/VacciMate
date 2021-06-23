@@ -5,13 +5,11 @@ public class Vaccine {
     private String name;
     private String brand;
     private int waitingPeriod;
-    private int noOfShots;
 
-    public Vaccine(String name, String brand, int waitingPeriod, int noOfShots) {
+    public Vaccine(String name, String brand, int waitingPeriod) {
         this.name = name;
         this.brand = brand;
         this.waitingPeriod = waitingPeriod;
-        this.noOfShots = noOfShots;
     }
 
     public String getName() {
@@ -38,13 +36,6 @@ public class Vaccine {
         this.waitingPeriod = waitingPeriod;
     }
 
-    public int getNoOfShots() {
-        return noOfShots;
-    }
-
-    public void setNoOfShots(int noOfShots) {
-        this.noOfShots = noOfShots;
-    }
 
     @Override
     public String toString() {
@@ -52,7 +43,7 @@ public class Vaccine {
                 "name='" + name + '\'' +
                 ", brand='" + brand + '\'' +
                 ", waitingPeriod=" + waitingPeriod +
-                ", noOfShots=" + noOfShots +
+                ", noOfShots=" +
                 '}';
     }
 }
