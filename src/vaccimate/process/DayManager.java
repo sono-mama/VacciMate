@@ -12,9 +12,19 @@ public class DayManager {
     public int numberOfSites = 6;
     public int numberOfSlots = 30;
     public Appointment[][] appointments;
+    public int[] availability = new int[numberOfSites];
 
     public DayManager() {
         appointments = new Appointment[numberOfSites][numberOfSlots];
+        for (int i = 0; i < appointments.length; i++){
+            for (int j = 0; j < appointments[i].length; j++){
+                appointments[i][j] = new Appointment();
+            }
+        }
+        for (int k = 0; k < numberOfSites; k++){
+            availability[k] = numberOfSlots;
+        }
+
 
     }
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Appointment {
 
-    private int code;
+    private String code;
     private Date date;
     private Patient patient;
     private VaccinationSite site;
@@ -17,21 +17,16 @@ public class Appointment {
         this.isBooked = false;
     }
 
-    public Appointment(int code, Date date, Patient patient, VaccinationSite site, Vaccine vaccine) {
-        this.code = code;
-        this.date = date;
-        this.patient = patient;
-        this.site = site;
-        this.vaccine = vaccine;
+
+
+    public boolean isBooked() {
+        return isBooked;
     }
 
-    public int getCode() {
-        return code;
+    public void setBooked(boolean booked) {
+        isBooked = booked;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
 
     public Date getDate() {
         return date;
@@ -43,6 +38,14 @@ public class Appointment {
 
     public Patient getPatient() {
         return patient;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setPatient(Patient patient) {
@@ -72,9 +75,8 @@ public class Appointment {
                 ", date=" + date +
                 ", patient=" + patient +
                 ", site=" + site +
-                ", firstAppointment=" +
-                ", followUpAppointment=" +
                 ", vaccine=" + vaccine +
+                ", isBooked=" + isBooked +
                 '}';
     }
 }

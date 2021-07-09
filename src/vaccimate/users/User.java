@@ -1,15 +1,17 @@
 package vaccimate.users;
 
+import java.util.UUID;
+
 public class User {
 
     protected String firstName;
     protected String lastName;
-    protected long id;
+    protected String id;
 
-    public User(String firstName, String lastName, long id) {
+    public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
     }
 
     public void showAppointment(){
@@ -32,13 +34,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+
 
     @Override
     public String toString() {

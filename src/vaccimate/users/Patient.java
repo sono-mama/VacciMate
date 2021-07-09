@@ -2,6 +2,11 @@ package vaccimate.users;
 
 import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
+import vaccimate.presentationLayer.Main;
+import vaccimate.process.*;
+
+import java.util.Calendar;
+
 
 public class Patient extends User {
 
@@ -10,17 +15,38 @@ public class Patient extends User {
     private Contact contact;
     private boolean allergies;
 
-    public Patient(String firstName, String lastName, long id, Address address, int age, Contact contact, boolean allergies) {
-        super(firstName, lastName, id);
+
+    public Patient(String firstName, String lastName, Address address, int age, Contact contact, boolean allergies) {
+        super(firstName, lastName);
         this.address = address;
         this.age = age;
         this.contact = contact;
         this.allergies = allergies;
     }
 
-    public void setAppointment(){}
+    public void setAppointment(int vaccCenter, CalendarManager calendar, Patient patient, int vaccine){
 
-    public void cancelAppointment(){}
+        for (int i = 0; i < calendar.numberOfDays; i++){
+            for (int j = 0; j < calendar.days.get(i)[vaccCenter].length; j++){
+                if (calendar.days.get(i)[vaccCenter][j].isBooked() == false){
+                    calendar.days.get(i)[vaccCenter][j].setPatient(patient);
+                    calendar.days.get(i)[vaccCenter][j].setVaccine(Init.vaccineArray[vaccine]);
+                    calendar.days.get(i)[vaccCenter][j].setCode(new CodeManager().generateCode(patient.getId(), vaccCenter, i, j));
+                    calendar.days.get(i)[vaccCenter][j].setBooked(true);
+                    calendar.days.get(i)[vaccCenter][j].setSite(Init.vaccinationSites[vaccCenter]);
+                }
+            }
+        }
+    }
+
+    public void cancelAppointment(String code, CalendarManager calendar){
+
+        int day = Character.getNumericValue(code.charAt(code.length()-1));
+        int slot = Character.getNumericValue(code.charAt(code.length()-2));
+        int vaccCenter = Character.getNumericValue(code.charAt(0));
+
+        calendar.days.get(day)[vaccCenter][slot].setBooked(false);
+    }
 
     public void createPDF(){}
 
@@ -62,8 +88,6 @@ public class Patient extends User {
                 "address=" + address +
                 ", age=" + age +
                 ", contact=" + contact +
-                ", insuranceType='" + '\'' +
-                ", insuranceName='" + '\'' +
                 ", allergies=" + allergies +
                 '}';
     }
