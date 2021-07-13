@@ -2,21 +2,26 @@ package vaccimate.process;
 
 import vaccimate.users.Patient;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Appointment {
 
     private String code;
-    private Date date;
+    private LocalDate date;
     private Patient patient;
     private VaccinationSite site;
     private Vaccine vaccine;
     boolean isBooked;
+    boolean vaccineGiven;
+    boolean patientDataChecked;
 
-    public Appointment() {
+    public Appointment(LocalDate inDate) {
         this.isBooked = false;
+        this.vaccineGiven = false;
+        this.patientDataChecked = false;
+        this.date = inDate;
     }
-
 
 
     public boolean isBooked() {
@@ -27,12 +32,27 @@ public class Appointment {
         isBooked = booked;
     }
 
+    public boolean isVaccineGiven() {
+        return vaccineGiven;
+    }
 
-    public Date getDate() {
+    public void setVaccineGiven(boolean vaccineGiven) {
+        this.vaccineGiven = vaccineGiven;
+    }
+
+    public boolean isPatientDataChecked() {
+        return patientDataChecked;
+    }
+
+    public void setPatientDataChecked(boolean patientDataChecked) {
+        this.patientDataChecked = patientDataChecked;
+    }
+
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

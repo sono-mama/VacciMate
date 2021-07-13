@@ -3,6 +3,7 @@ package vaccimate.presentationLayer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
 
 import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
@@ -19,7 +20,7 @@ public class Main {
 
 
 
-		CalendarManager calendar = new CalendarManager(90);
+		CalendarManager calendar = new CalendarManager(90, LocalDate.now());
 
 
         Address pat1Add = new Address("Musterstr.", "1", "12151", "Berlin");
@@ -29,6 +30,9 @@ public class Main {
 		pat1.setAppointment(1, calendar, pat1, 1);
 
 		System.out.println(calendar.days.get(0)[1][0].getCode());
+		System.out.println(calendar.days.get(0)[1][0].getDate());
+
+		pat1.showAppointment(calendar.days.get(0)[1][0].getCode(), calendar);
 
 		pat1.cancelAppointment(calendar.days.get(0)[1][0].getCode(), calendar);
 

@@ -2,10 +2,8 @@ package vaccimate.users;
 
 import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
-import vaccimate.presentationLayer.Main;
 import vaccimate.process.*;
 
-import java.util.Calendar;
 
 
 public class Patient extends User {
@@ -15,6 +13,9 @@ public class Patient extends User {
     private Contact contact;
     private boolean allergies;
 
+    public Patient(String firstName, String lastName) {
+        super(firstName, lastName);
+    }
 
     public Patient(String firstName, String lastName, Address address, int age, Contact contact, boolean allergies) {
         super(firstName, lastName);
@@ -41,11 +42,12 @@ public class Patient extends User {
 
     public void cancelAppointment(String code, CalendarManager calendar){
 
-        int day = Character.getNumericValue(code.charAt(code.length()-1));
-        int slot = Character.getNumericValue(code.charAt(code.length()-2));
-        int vaccCenter = Character.getNumericValue(code.charAt(0));
+        Appointment appointment = getAppointmentFromCode(code, calendar);
 
-        calendar.days.get(day)[vaccCenter][slot].setBooked(false);
+        appointment.setBooked(false);
+        appointment.setVaccineGiven(false);
+        appointment.setPatient(new Patient("",""));
+        appointment.setCode("");
     }
 
     public void createPDF(){}
