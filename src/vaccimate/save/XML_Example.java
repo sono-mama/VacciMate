@@ -32,10 +32,10 @@ public class XML_Example {
         //Schreiben der XML-Datei auf Platte
         contact.writeXMLContact(doc);
         
-        XML_Address address = new XML_Address();
-        Document doc2 = address.createDocAddress("Addresses");
-        address.writeDocAddress(doc2);
-        address.writeXMLAddress(doc2);
+        //XML_Address address = new XML_Address();
+        //Document doc2 = address.createDocAddress("Addresses");
+        //address.writeDocAddress(doc2);
+        //address.writeXMLAddress(doc2);
         
         //Ausgaben
         //der 1. Kontakt
