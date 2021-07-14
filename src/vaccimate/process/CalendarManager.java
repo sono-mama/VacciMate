@@ -12,9 +12,11 @@ public class CalendarManager {
 
     public int numberOfDays;
     public ArrayList<Appointment[][]> days;
+    public LocalDate startDate;
 
     public CalendarManager(int numberOfDays, LocalDate startDate) {
         this.numberOfDays = numberOfDays;
+        this.startDate = startDate;
         days = new ArrayList<>();
 
         for (int i = 0; i < numberOfDays; i++){

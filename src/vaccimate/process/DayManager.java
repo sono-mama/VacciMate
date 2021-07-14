@@ -20,7 +20,7 @@ public class DayManager {
         appointments = new Appointment[numberOfSites][numberOfSlots];
         for (int i = 0; i < appointments.length; i++){
             for (int j = 0; j < appointments[i].length; j++){
-                appointments[i][j] = new Appointment(date);
+                appointments[i][j] = new Appointment(date, j);
             }
         }
         for (int k = 0; k < numberOfSites; k++){

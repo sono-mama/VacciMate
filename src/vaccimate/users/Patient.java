@@ -27,17 +27,45 @@ public class Patient extends User {
 
     public void setAppointment(int vaccCenter, CalendarManager calendar, Patient patient, int vaccine){
 
+       int day = 99999999; // unsicher????
+       int slot = 99999999;
+
+       search:
         for (int i = 0; i < calendar.numberOfDays; i++){
             for (int j = 0; j < calendar.days.get(i)[vaccCenter].length; j++){
-                if (calendar.days.get(i)[vaccCenter][j].isBooked() == false){
+                if (!calendar.days.get(i)[vaccCenter][j].isBooked()){
                     calendar.days.get(i)[vaccCenter][j].setPatient(patient);
                     calendar.days.get(i)[vaccCenter][j].setVaccine(Init.vaccineArray[vaccine]);
                     calendar.days.get(i)[vaccCenter][j].setCode(new CodeManager().generateCode(patient.getId(), vaccCenter, i, j));
                     calendar.days.get(i)[vaccCenter][j].setBooked(true);
                     calendar.days.get(i)[vaccCenter][j].setSite(Init.vaccinationSites[vaccCenter]);
+                    
+                    day = i;
+                    slot = j;
+                    break search;
                 }
             }
+            System.out.println("Aktuell sind leider keine freien Termine verfügbar. Bitte versuchen Sie es zu einem " +
+                    "späteren Zeitpunkt erneut.");
         }
+        if (day != 99999999 && slot != 99999999){
+            setFollowUpAppointment(vaccCenter, calendar, calendar.days.get(day)[vaccCenter][slot], day, slot);
+        }
+    }
+
+    public void setFollowUpAppointment(int vaccCenter, CalendarManager calendar, Appointment firstAppointment, int day, int slot) throws
+            IndexOutOfBoundsException {
+        try{
+            int nextDay = day + firstAppointment.getVaccine().getWaitingPeriod();
+            calendar.days.get(nextDay)[vaccCenter][slot].setPatient(firstAppointment.getPatient());
+            calendar.days.get(nextDay)[vaccCenter][slot].setVaccine(firstAppointment.getVaccine());
+            calendar.days.get(nextDay)[vaccCenter][slot].setCode(new CodeManager().generateCode(firstAppointment.getPatient().getId(), vaccCenter, day, slot));
+            calendar.days.get(nextDay)[vaccCenter][slot].setBooked(true);
+            calendar.days.get(nextDay)[vaccCenter][slot].setSite(Init.vaccinationSites[vaccCenter]);
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("Eine Vergabe eines Zweittermins ist zum jetzigen Zeitpunkt leider nicht möglich.");
+        }
+
     }
 
     public void cancelAppointment(String code, CalendarManager calendar){

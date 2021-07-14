@@ -22,9 +22,9 @@ public class Init {
 
     private void initVaccines(Vaccine[] vaccineArray){
         // currently used vaccines in the vaccination centers
-        String[] vaccineName = {"Comirnaty", " Moderna Covid-19", "Covishield"};
+        String[] vaccineName = {"Comirnaty", "Spikevax", "Vaxzevria"};
         String[] vaccineBrand = {"Pfizer-BioNTech", "Moderna", "AstraZeneca"};
-        int[] vaccineWaitingPeriod = {6, 6, 12};
+        int[] vaccineWaitingPeriod = {42, 42 , 84};
 
         for(int i = 0; i < 3; i++) {
             vaccineArray[i] = new Vaccine(vaccineName[i], vaccineBrand[i], vaccineWaitingPeriod[i]);

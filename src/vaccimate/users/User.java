@@ -32,9 +32,11 @@ public class User {
 
         System.out.println("Termincode: \n" + code);
         System.out.println("Datum: \n" + appointment.getDate());
+        System.out.println("Uhrzeit: \n" + appointment.getStartTime()[0] + appointment.getStartTime()[1]);
         System.out.println("Patient: \n" + appointment.getPatient().firstName +
                 ", " +
                 appointment.getPatient().lastName);
+        System.out.println("Impfstoff: \n" + appointment.getVaccine().getName());
         System.out.println("Impfzentrum: \n" + appointment.getSite().getName() +
                 "\n" + appointment.getSite().getAddress().getStreetName() +
                 appointment.getSite().getAddress().getStreetNo() + "\n" +

@@ -32,12 +32,9 @@ public class Main {
 		System.out.println(calendar.days.get(0)[1][0].getCode());
 		System.out.println(calendar.days.get(0)[1][0].getDate());
 
-		pat1.showAppointment(calendar.days.get(0)[1][0].getCode(), calendar);
 
-		pat1.cancelAppointment(calendar.days.get(0)[1][0].getCode(), calendar);
-
-		System.out.println(calendar.days.get(0)[1][0].getCode());
-		System.out.println(calendar.days.get(0)[1][0].isBooked());
+		System.out.println(calendar.days.get(42)[1][0].getCode());
+		System.out.println(calendar.days.get(42)[1][0].getDate());
 
 
 
