@@ -1,5 +1,6 @@
 package vaccimate.process;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class CalendarManager {
@@ -11,13 +12,16 @@ public class CalendarManager {
 
     public int numberOfDays;
     public ArrayList<Appointment[][]> days;
+    public LocalDate startDate;
 
-    public CalendarManager(int numberOfDays) {
+    public CalendarManager(int numberOfDays, LocalDate startDate) {
         this.numberOfDays = numberOfDays;
+        this.startDate = startDate;
         days = new ArrayList<>();
 
         for (int i = 0; i < numberOfDays; i++){
-            days.add(new DayManager().appointments);
+            LocalDate nextDate = startDate.plusDays(i);
+            days.add(new DayManager(nextDate).appointments);
         }
 
     }
