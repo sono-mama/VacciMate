@@ -17,6 +17,8 @@ public class VaccinationSite {
         this.availVaccine = new Vaccine[]{firstVaccine, secondVaccine};
         this.address = address;
         this.contact = contact;
+        this.firstVaccine = firstVaccine;
+        this.secondVaccine = secondVaccine;
     }
 
     public Vaccine getFirstVaccine() {
