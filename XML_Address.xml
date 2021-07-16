@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Address>
+    <Address>
+        <streetName>Hohenzollernstraße</streetName>
+        <streetNo>4</streetNo>
+        <postalCode>14109</postalCode>
+        <city>Berlin</city>
+    </Address>
+    <Address>
+        <streetName>Wrongroad</streetName>
+        <streetNo>16</streetNo>
+        <postalCode>90141</postalCode>
+        <city>London</city>
+    </Address>
+    <Address>
+        <streetName>Hohenzollernstraße</streetName>
+        <streetNo>4</streetNo>
+        <postalCode>14109</postalCode>
+        <city>Berlin</city>
+    </Address>
+    <Address>
+        <streetName>Wrongroad</streetName>
+        <streetNo>16</streetNo>
+        <postalCode>90141</postalCode>
+        <city>London</city>
+    </Address>
+</Address>
