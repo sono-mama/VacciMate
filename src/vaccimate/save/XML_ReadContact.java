@@ -10,7 +10,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
-class XML_Read {
+class XML_ReadContact {
 
 	Document doc = null;
 	String telephoneNo = "";

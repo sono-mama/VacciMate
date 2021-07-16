@@ -14,11 +14,11 @@ public class XML_Example {
 		File f = new File(ContactFilename);
 		if(f.exists() && !f.isDirectory()) { 
 		    // Ja, existiert, also die gesamte Datei einlesen in doc
-			XML_Read read = new XML_Read();
+			XML_ReadContact read = new XML_ReadContact();
 			doc = read.readContactDocument(ContactFilename);
 		}
 		
-		XML_Contact contact = new XML_Contact();
+		XML_WirteContact contact = new XML_WirteContact();
 		
 		//kein Inhalt in doc, da Datei nicht vorhanden, also Init XML - Root
 		if (doc == null) {
@@ -32,19 +32,40 @@ public class XML_Example {
         //Schreiben der XML-Datei auf Platte
         contact.writeXMLContact(doc);
         
-        //XML_Address address = new XML_Address();
-        //Document doc2 = address.createDocAddress("Addresses");
-        //address.writeDocAddress(doc2);
-        //address.writeXMLAddress(doc2);
-        
         //Ausgaben
         //der 1. Kontakt
-        XML_Read read = new XML_Read();
+        XML_ReadContact read = new XML_ReadContact();
         String[] oneContact = read.readOneContact(ContactFilename,0);
         System.out.println(oneContact[0]);
         
         //Alle Kontakte
         read.readAllContacts(ContactFilename);
+        
+        
+        Document doc2 = null;
+		String AddressFilename = "XML_Address.xml";
+		File f2 = new File(AddressFilename);
+		if(f2.exists() && !f2.isDirectory()) { 
+			XML_ReadAddress read2 = new XML_ReadAddress();
+			doc2 = read2.readAddressDocument(AddressFilename);
+		}
+		
+		XML_WirteAddress address = new XML_WirteAddress();
+		
+		if (doc2 == null) {
+			doc2 = address.createDocAddress("Address");
+		}
+        
+        address.writeDocAddress(doc2,"Hohenzollernstraﬂe", "4", "14109", "Berlin");
+        address.writeDocAddress(doc2,"Wrongroad", "16", "90141", "London");
+        
+        address.writeXMLContact(doc2);
+        
+        XML_ReadAddress read2 = new XML_ReadAddress();
+        String[] oneAddress = read2.readOneAddress(AddressFilename,0);
+        System.out.println(oneAddress[0]);
+        
+        read2.readAllAddresses(AddressFilename);
         
 	}
 
