@@ -8,7 +8,7 @@ import java.io.File;
 public class XML_Example {
 	//Muss in der Main stehen um benutzt zu werden
 	//public static void main(String[] args) {
-		
+	void test(){	
 		Document doc = null;
 		String ContactFilename = "XML_Contact.xml";
 		File f = new File(ContactFilename);
@@ -66,7 +66,8 @@ public class XML_Example {
         System.out.println(oneAddress[0]);
         
         read2.readAllAddresses(AddressFilename);
-        
+	}
+	
 	}
 
-}
+
