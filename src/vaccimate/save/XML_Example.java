@@ -6,8 +6,8 @@ import org.jdom2.Element;
 import java.io.File;
 
 public class XML_Example {
-
-	public static void main(String[] args) {
+	//Muss in der Main stehen um benutzt zu werden
+	//public static void main(String[] args) {
 		
 		Document doc = null;
 		String ContactFilename = "XML_Contact.xml";
