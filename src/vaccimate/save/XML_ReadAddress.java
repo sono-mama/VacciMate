@@ -41,7 +41,7 @@ class XML_ReadAddress {
 			streetName = ((Element) oneAddress.get(0)).getValue();
 			streetNo = ((Element) oneAddress.get(1)).getValue();
 			postalCode = ((Element) oneAddress.get(2)).getValue();
-			city = ((Element) oneAddress.get(2)).getValue();
+			city = ((Element) oneAddress.get(3)).getValue();
 
 		} catch (JDOMException e) {
 			e.printStackTrace();

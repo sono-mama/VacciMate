@@ -10,14 +10,4 @@
         <mobileNo>654</mobileNo>
         <email>@web.de</email>
     </Contact>
-    <Contact>
-        <telephoneNo>123</telephoneNo>
-        <mobileNo>456</mobileNo>
-        <email>@gmx.de</email>
-    </Contact>
-    <Contact>
-        <telephoneNo>321</telephoneNo>
-        <mobileNo>654</mobileNo>
-        <email>@web.de</email>
-    </Contact>
 </Contacts>
