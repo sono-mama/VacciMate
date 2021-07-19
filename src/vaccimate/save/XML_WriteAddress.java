@@ -11,7 +11,7 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-public class XML_WirteAddress {
+public class XML_WriteAddress {
 
 	private final static String DATNAM = "XML_Address.xml";
 
@@ -47,8 +47,7 @@ public class XML_WirteAddress {
         docAddress.getRootElement().addContent(Address);
     }
 	
-	//Methode zum Schreiben der Datei
-	void writeXMLContact(Document doc) {
+	void writeXMLAddress(Document doc) {
         Format format = Format.getPrettyFormat();
         format.setIndent("    ");
         try (FileOutputStream fos = new FileOutputStream(FILE)) {
