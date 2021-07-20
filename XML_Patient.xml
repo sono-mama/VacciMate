@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient>
+    <Patient>
+        <firstName>Arne</firstName>
+        <lastName>Bornschein</lastName>
+        <id>1</id>
+        <age>18</age>
+        <allergies>true</allergies>
+    </Patient>
+    <Patient>
+        <firstName>Joe</firstName>
+        <lastName>Dawn</lastName>
+        <id>2</id>
+        <age>45</age>
+        <allergies>false</allergies>
+    </Patient>
+</Patient>
