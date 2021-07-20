@@ -8,8 +8,10 @@ import java.util.Scanner;
 
 import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
+import vaccimate.auxiliary.PdfCreator;
 import vaccimate.process.*;
 import vaccimate.users.Patient;
+import vaccimate.users.Reception;
 
 public class Main {
 
@@ -18,6 +20,8 @@ public class Main {
 	// write your code here
 
 		Init init = new Init();
+
+		PdfCreator pdfCreator = new PdfCreator();
 
 
 
@@ -28,14 +32,11 @@ public class Main {
         Contact pat1Cont = new Contact("03032590909", "01764589901", "max.mustermann@web.de");
         Patient pat1 = new Patient("Max", "Mustermann", pat1Add, 89, pat1Cont, true);
 
-		pat1.setAppointment(1, calendar, pat1, 1);
+		pat1.setAppointment(0, calendar, pat1, 1);
 
-		System.out.println(calendar.days.get(0)[1][0].getCode());
-		System.out.println(calendar.days.get(0)[1][0].getDate());
-
-
-		System.out.println(calendar.days.get(42)[1][0].getCode());
-		System.out.println(calendar.days.get(42)[1][0].getDate());
+		Reception reception = new Reception("Max", "Mayer", init.getVaccinationSites()[0]);
+		reception.createAppointmentList(0, calendar);
+		//pdfCreator.createAppointmentList(calendar.days.get(0)[1]);
 
 
 
@@ -57,7 +58,7 @@ public class Main {
 						int numberpatient = Integer.parseInt(dinpatient.readLine());
 						switch (numberpatient) {
 							case 0: menuhelper = 1; break;
-							case 1: // Termin buchen Methode enthählt Eingabe Patientendaten, Wahl Impfzentrum und Wahl Impfstoff
+							case 1: // Termin buchen Methode enthï¿½hlt Eingabe Patientendaten, Wahl Impfzentrum und Wahl Impfstoff
 								Patient patient = setPatientData();
 								int vaccineCenterNumber = setVaccineCenter();
 								int vaccineNumber = setVaccine(vaccineCenterNumber);
@@ -70,7 +71,7 @@ public class Main {
 								
 								System.out.println("Bitte geben Sie ihren Termincode ein");
 								String appointmentCode = sc.nextLine();
-								// patient.cancelAppointment(appointmentCode, calendar); Methode muss über Objekt aufgerufen werden
+								// patient.cancelAppointment(appointmentCode, calendar); Methode muss ï¿½ber Objekt aufgerufen werden
 						}
 					} while(menuhelper == 0); menuhelper = 0;
 					break;
@@ -121,9 +122,9 @@ public class Main {
     	String postalCode = sc.nextLine();
     	System.out.println("Geben Sie ihren Wohnort ein");
     	String city = sc.nextLine();
-    	System.out.println("Geben Sie ihre Straße ein");
+    	System.out.println("Geben Sie ihre Straï¿½e ein");
     	String streetName = sc.nextLine();
-    	System.out.println("Geben Sie ihre Straßennummer ein");
+    	System.out.println("Geben Sie ihre Straï¿½ennummer ein");
     	String streetNo = sc.nextLine();
     	System.out.println("Geben Sie ihre Festnetznummer ein");
     	String telephoneNo = sc.nextLine();

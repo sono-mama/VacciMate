@@ -1,5 +1,6 @@
 package vaccimate.users;
 
+import vaccimate.auxiliary.PdfCreator;
 import vaccimate.process.Appointment;
 import vaccimate.process.CalendarManager;
 import vaccimate.process.VaccinationSite;
@@ -30,14 +31,15 @@ public class Reception extends Employee {
 
         System.out.println("Termine für heute (" + LocalDate.now() + ") in chronologischer Reihenfolge: ");
         for (Appointment appointment : appointments) {
-            System.out.println("Patient: " + appointment.getPatient().getFirstName() + ", " +
-                    appointment.getPatient().getLastName());
-            System.out.println("Code: " + appointment.getCode());
-            System.out.println("Uhrzeit: " + appointment.getStartTime()[0] + appointment.getStartTime()[1]);
-            System.out.println("Impfstoff: " + appointment.getVaccine());
+            if (appointment.getPatient() == null){
+                System.out.println(appointment.getStartTime()[0] + " " + appointment.getStartTime()[1] + " Freier Termin");
+            } else {
+                System.out.println(appointment.getStartTime()[0] + appointment.getStartTime()[1] + " Patient: " + appointment.getPatient().getFirstName() + ", " +
+                        appointment.getPatient().getLastName() + " Code: " + appointment.getCode() +
+                        " Impfstoff: " + appointment.getVaccine().getName());
+            }
         }
-
-        // createPdf();
-
+        new PdfCreator().createAppointmentList(appointments);
+        System.out.println("Ein PDF Dokument der Terminübersicht wurde erstellt!");
     }
 }
