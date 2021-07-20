@@ -36,7 +36,7 @@ public class Main {
 
 		Reception reception = new Reception("Max", "Mayer", init.getVaccinationSites()[0]);
 		reception.createAppointmentList(0, calendar);
-		//pdfCreator.createAppointmentList(calendar.days.get(0)[1]);
+
 
 
 
