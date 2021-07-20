@@ -2,6 +2,7 @@ package vaccimate.users;
 
 import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
+import vaccimate.auxiliary.PdfCreator;
 import vaccimate.process.*;
 
 
@@ -40,8 +41,26 @@ public class Patient extends User {
                     calendar.days.get(i)[vaccCenter][j].setBooked(true);
                     calendar.days.get(i)[vaccCenter][j].setSite(Init.vaccinationSites[vaccCenter]);
                     
+                    Appointment bookedAppointment = calendar.days.get(i)[vaccCenter][j];
+
                     day = i;
                     slot = j;
+
+                    System.out.println("Dies ist der nächste verfügbare Termin. Er wurde automatisch für sie gebucht.");
+                    System.out.println("Datum: " + bookedAppointment.getDate());
+                    System.out.println("Uhrzeit: " + bookedAppointment.getStartTime()[0] +
+                            bookedAppointment.getStartTime()[1]);
+                    System.out.println("Impfzentrum: " + bookedAppointment.getSite().getName() + " " +
+                            bookedAppointment.getSite().getAddress().getStreetName() + " " +
+                            bookedAppointment.getSite().getAddress().getStreetNo() + " " +
+                            bookedAppointment.getSite().getAddress().getPostalCode() + " " +
+                            bookedAppointment.getSite().getAddress().getCity());
+                    System.out.println("Impfstoff: " + bookedAppointment.getVaccine().getBrand() + " " +
+                            bookedAppointment.getVaccine().getName());
+                    System.out.println("Termin-Code: " + bookedAppointment.getCode());
+
+                    new PdfCreator().createConfirmationPdf(bookedAppointment);
+                    System.out.println("Eine PDF mit der Terminbestätigung wurde erstellt.");
                     break search;
                 }
             }
@@ -62,6 +81,20 @@ public class Patient extends User {
             calendar.days.get(nextDay)[vaccCenter][slot].setCode(new CodeManager().generateCode(firstAppointment.getPatient().getId(), vaccCenter, day, slot));
             calendar.days.get(nextDay)[vaccCenter][slot].setBooked(true);
             calendar.days.get(nextDay)[vaccCenter][slot].setSite(Init.vaccinationSites[vaccCenter]);
+
+            Appointment bookedAppointment = calendar.days.get(nextDay)[vaccCenter][slot];
+
+            System.out.println("Dies ist ihr Zweittermin:");
+            System.out.println("Datum: " + bookedAppointment.getDate());
+            System.out.println("Uhrzeit: " + bookedAppointment.getStartTime()[0] +
+                    bookedAppointment.getStartTime()[1]);
+            System.out.println("Termin-Code: " + bookedAppointment.getCode());
+
+            new PdfCreator().createConfirmationPdf(bookedAppointment);
+            System.out.println("Eine PDF mit der Terminbestätigung für ihren Zweittermin wurde erstellt.");
+
+
+
         } catch (IndexOutOfBoundsException e){
             System.out.println("Eine Vergabe eines Zweittermins ist zum jetzigen Zeitpunkt leider nicht möglich.");
         }
@@ -77,8 +110,6 @@ public class Patient extends User {
         appointment.setPatient(new Patient("",""));
         appointment.setCode("");
     }
-
-    public void createPDF(){}
 
     public Address getAddress() {
         return address;

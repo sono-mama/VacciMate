@@ -21,7 +21,7 @@ public class PdfCreator {
     public void createConfirmationPdf(Appointment appointment) {
         try {
 
-            File file = new File("Terminbestätigung.pdf");
+            File file = new File("Terminbestätigung_" + appointment.getCode() + ".pdf");
             PdfWriter pdfWriter = new PdfWriter(file);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);
             Document document = new Document(pdfDocument);
