@@ -10,6 +10,7 @@ import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
 import vaccimate.auxiliary.PdfCreator;
 import vaccimate.process.*;
+import vaccimate.users.Doctor;
 import vaccimate.users.Patient;
 import vaccimate.users.Reception;
 
@@ -20,8 +21,7 @@ public class Main {
 	// write your code here
 
 		Init init = new Init();
-
-		PdfCreator pdfCreator = new PdfCreator();
+		VaccinationSite[] vaccinationSites = init.getVaccinationSites();
 
 
 
@@ -32,19 +32,23 @@ public class Main {
         Contact pat1Cont = new Contact("03032590909", "01764589901", "max.mustermann@web.de");
         Patient pat1 = new Patient("Max", "Mustermann", pat1Add, 89, pat1Cont, true);
 
-		pat1.setAppointment(0, calendar, pat1, 1);
+		// pat1.setAppointment(0, calendar, pat1, 1);
 
 		Reception reception = new Reception("Max", "Mayer", init.getVaccinationSites()[0]);
-		reception.createAppointmentList(0, calendar);
+		// reception.createAppointmentList(0, calendar);
 
 
 
 
 
 		int menuhelper = 0;
+		Patient patient0 = new Patient("0", "0");
+		Doctor doctor0 = new Doctor("", "", null);
+		Scanner sc = new Scanner(System.in);
+		Scanner sc2 = new Scanner(System.in);
         do {
-        	System.out.println("0 - Programm beenden\n1 - Anmelden als Patient\n2 - Anmelden als Mitarbeiter\n3 - Anmelden als Arzt");
         	System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
+        	System.out.println("0 - Programm beenden\n1 - Anmelden als Patient\n2 - Anmelden als Mitarbeiter\n3 - Anmelden als Arzt");
         	BufferedReader din= new BufferedReader(new InputStreamReader(System.in));
         	int numberuser = Integer.parseInt(din.readLine());
 		
@@ -52,51 +56,77 @@ public class Main {
         		case 0: menuhelper = 1; break;
         		case 1: // Patient
 					do {
+						System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
 						System.out.println("0 - zurueck\n1 - Termin buchen\n2 - Termin aufrufen");
-						System.out.println("Bitte Funktion durch Eingabe der passenden Zahl wÃ¤hlen");
 						BufferedReader dinpatient = new BufferedReader(new InputStreamReader(System.in));
 						int numberpatient = Integer.parseInt(dinpatient.readLine());
 						switch (numberpatient) {
 							case 0: menuhelper = 1; break;
-							case 1: // Termin buchen Methode enthï¿½hlt Eingabe Patientendaten, Wahl Impfzentrum und Wahl Impfstoff
-								Patient patient = setPatientData();
-								int vaccineCenterNumber = setVaccineCenter();
-								int vaccineNumber = setVaccine(vaccineCenterNumber);
+							case 1: // Termin buchen Methode enthählt Eingabe Patientendaten, Wahl Impfzentrum und Wahl Impfstoff
+								Patient patient = setPatientDataInput();
+								int vaccineCenterNumber = setVaccineCenterInput(vaccinationSites);
+								int vaccineNumber = setVaccineInput(vaccineCenterNumber, vaccinationSites);
 								patient.setAppointment(vaccineCenterNumber, calendar, patient, vaccineNumber);
 								break;
-							case 2: // Termin aufrufen
-								Scanner sc = new Scanner(System.in);
-								System.out.println("1 - Termin stornieren"+"\n2 - PDF erzeugen");
-								System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
-								
-								System.out.println("Bitte geben Sie ihren Termincode ein");
-								String appointmentCode = sc.nextLine();
-								// patient.cancelAppointment(appointmentCode, calendar); Methode muss ï¿½ber Objekt aufgerufen werden
+							case 2: // Termin aufrufen mit der Möglichkeit der Stornierung oder der PDF - Erzeugung
+								do {
+									System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
+									System.out.println("0 - zurueck\n1 - Termin stornieren"+"\n2 - PDF erzeugen");
+									int numberShow = sc2.nextInt();
+									switch (numberShow) {
+									case 0: menuhelper = 1; break;
+									case 1: // Termin stornieren
+										System.out.println("Geben Sie bitte Ihren Termincode ein");
+										String appointmentCodeCancel = sc.nextLine();
+										patient0.cancelAppointment(appointmentCodeCancel, calendar);
+										break;
+									case 2: // Termin als PDF ausgeben
+										System.out.println("Geben Sie bitte Ihren Termincode ein");
+										String appointmentCodePDF = sc.nextLine();
+										Appointment bookedAppointment = patient0.getAppointmentFromCode(appointmentCodePDF, calendar);
+										new PdfCreator().createConfirmationPdf(bookedAppointment);
+					                    System.out.println("Eine PDF mit der Terminbestaetigung wurde erstellt.");
+										break;
+									}
+								} while(menuhelper == 0); menuhelper = 0;
 						}
 					} while(menuhelper == 0); menuhelper = 0;
 					break;
 				case 2: // Rezeption
 					do {
-						System.out.println("0 - zurueck\n1 - Termin aufrufen\n2 - Terminuebersicht anzeigen");
 						System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
+						System.out.println("0 - zurueck\n1 - Termin aufrufen\n2 - Terminuebersicht anzeigen");
 						BufferedReader dinreception = new BufferedReader(new InputStreamReader(System.in));
 						int numberreception = Integer.parseInt(dinreception.readLine());
 						switch (numberreception) {
 							case 0: menuhelper = 1; break;
-							case 1: // Aufruf showAppointment();
-							case 2: // Aufruf showAppointmentList();
+							case 1: // Einzelnen Termin anzeigen
+								System.out.println("Geben Sie bitte Ihren Termincode ein");
+								String appointmentCodePDF = sc.nextLine();
+								Appointment bookedAppointment = patient0.getAppointmentFromCode(appointmentCodePDF, calendar);
+								new PdfCreator().createConfirmationPdf(bookedAppointment);
+								break;
+							case 2: // Terminliste als PDF
+								int vaccineCenterNumber2 = setVaccineCenterInput(vaccinationSites);
+								reception.createAppointmentList(vaccineCenterNumber2, calendar);
+								break;		
 						}
         			} while(menuhelper == 0); menuhelper = 0;
         			break;
 				case 3: // Arzt
 					do {
-						System.out.println("0 - zurueck\n1 - Patient impfen");
 						System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
+						System.out.println("0 - zurueck\n1 - Patient impfen");
 						BufferedReader dindoctor = new BufferedReader(new InputStreamReader(System.in));
 						int numberdoctor = Integer.parseInt(dindoctor.readLine());
 						switch (numberdoctor) {
 							case 0: menuhelper = 1; break;
 							case 1: // Aufruf setVaccineStatus();
+								System.out.println("Geben Sie bitte Ihren Termincode ein");
+								String appointmentCodeStatus = sc.nextLine();
+								doctor0.setVaccineStatus(appointmentCodeStatus, calendar);
+								System.out.println("Impfung erfolgreich absolviert");
+								break;
 						}
 					} while(menuhelper == 0); menuhelper = 0;
 					break;
@@ -104,7 +134,7 @@ public class Main {
         } while (menuhelper == 0);
     }
     
-    public static Patient setPatientData() {
+    public static Patient setPatientDataInput() {
     	Scanner sc = new Scanner(System.in);
     	Scanner sc2 = new Scanner(System.in); // Boolean und Int nicht kompatibel mit String - Eingabe
     	System.out.println("Eingabe der Patientendaten");
@@ -122,9 +152,9 @@ public class Main {
     	String postalCode = sc.nextLine();
     	System.out.println("Geben Sie ihren Wohnort ein");
     	String city = sc.nextLine();
-    	System.out.println("Geben Sie ihre Straï¿½e ein");
+    	System.out.println("Geben Sie ihre Straße ein");
     	String streetName = sc.nextLine();
-    	System.out.println("Geben Sie ihre Straï¿½ennummer ein");
+    	System.out.println("Geben Sie ihre Straßennummer ein");
     	String streetNo = sc.nextLine();
     	System.out.println("Geben Sie ihre Festnetznummer ein");
     	String telephoneNo = sc.nextLine();
@@ -139,10 +169,7 @@ public class Main {
     	return Pat;
     }
     
-    public static int setVaccine(int vaccineCenterNumber) {
-    	Init init = new Init();
-    	Vaccine[] vaccineArray = init.getVaccineArray();
-    	VaccinationSite[] vaccinationSites = init.getVaccinationSites();
+    public static int setVaccineInput(int vaccineCenterNumber, VaccinationSite[] vaccinationSites) {
     	Scanner sc = new Scanner(System.in);
     	System.out.println("Bitte Impfstoff durch Eingabe der passenden Zahl waehlen");
     	System.out.println("1 - "+vaccinationSites[vaccineCenterNumber].getFirstVaccine().getBrand());
@@ -163,9 +190,7 @@ public class Main {
 		return -1;
     	}
     
-    	public static int setVaccineCenter() {
-        	Init init = new Init();
-        	VaccinationSite[] vaccinationSites = init.getVaccinationSites();
+    	public static int setVaccineCenterInput(VaccinationSite[] vaccinationSites) {
         	Scanner sc = new Scanner(System.in);
         	System.out.println("Bitte Impfzentrum durch Eingabe der passenden Zahl waehlen");
         	System.out.println("1 - "+vaccinationSites[0].getName()+ "\n" + "2 - "+vaccinationSites[1].getName()+ "\n" + "3 - "+vaccinationSites[2].getName()+ "\n" + "4 - "+vaccinationSites[3].getName()+ "\n" + "5 - "+vaccinationSites[4].getName()+ "\n" + "6 - "+vaccinationSites[5].getName());
