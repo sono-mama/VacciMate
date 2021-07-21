@@ -3,10 +3,8 @@ package vaccimate.auxiliary;
 import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.io.source.OutputStream;
-import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
-import com.itextpdf.layout.property.UnitValue;
+
 import vaccimate.process.Appointment;
 
 import java.io.*;
@@ -19,6 +17,7 @@ public class PdfCreator {
     }
 
     public void createConfirmationPdf(Appointment appointment) {
+
         try {
 
             File file = new File("Terminbestätigung_" + appointment.getCode() + ".pdf");
@@ -89,9 +88,10 @@ public class PdfCreator {
 
             document.close();
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public void createAppointmentList(Appointment[] appointments){

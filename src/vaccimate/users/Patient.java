@@ -105,10 +105,14 @@ public class Patient extends User {
 
         Appointment appointment = getAppointmentFromCode(code, calendar);
 
-        appointment.setBooked(false);
-        appointment.setVaccineGiven(false);
-        appointment.setPatient(new Patient("",""));
-        appointment.setCode("");
+        if (appointment != null && appointment.getPatient() != null){
+            appointment.setBooked(false);
+            appointment.setVaccineGiven(false);
+            appointment.setPatient(new Patient("",""));
+            appointment.setCode("");
+        } else if (appointment != null && appointment.getPatient() == null){
+            System.out.println("Fehler im Termincode.");
+        }
     }
 
     public Address getAddress() {

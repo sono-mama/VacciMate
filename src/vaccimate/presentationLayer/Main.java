@@ -62,13 +62,13 @@ public class Main {
 						int numberpatient = Integer.parseInt(dinpatient.readLine());
 						switch (numberpatient) {
 							case 0: menuhelper = 1; break;
-							case 1: // Termin buchen Methode enthählt Eingabe Patientendaten, Wahl Impfzentrum und Wahl Impfstoff
+							case 1: // Termin buchen Methode enthï¿½hlt Eingabe Patientendaten, Wahl Impfzentrum und Wahl Impfstoff
 								Patient patient = setPatientDataInput();
 								int vaccineCenterNumber = setVaccineCenterInput(vaccinationSites);
 								int vaccineNumber = setVaccineInput(vaccineCenterNumber, vaccinationSites);
 								patient.setAppointment(vaccineCenterNumber, calendar, patient, vaccineNumber);
 								break;
-							case 2: // Termin aufrufen mit der Möglichkeit der Stornierung oder der PDF - Erzeugung
+							case 2: // Termin aufrufen mit der Mï¿½glichkeit der Stornierung oder der PDF - Erzeugung
 								do {
 									System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
 									System.out.println("0 - zurueck\n1 - Termin stornieren"+"\n2 - PDF erzeugen");
@@ -84,8 +84,11 @@ public class Main {
 										System.out.println("Geben Sie bitte Ihren Termincode ein");
 										String appointmentCodePDF = sc.nextLine();
 										Appointment bookedAppointment = patient0.getAppointmentFromCode(appointmentCodePDF, calendar);
-										new PdfCreator().createConfirmationPdf(bookedAppointment);
-					                    System.out.println("Eine PDF mit der Terminbestaetigung wurde erstellt.");
+										if (bookedAppointment != null && bookedAppointment.getPatient() != null){
+											new PdfCreator().createConfirmationPdf(bookedAppointment);
+										} else if (bookedAppointment != null && bookedAppointment.getPatient() == null){
+											System.out.println("Fehler im Termincode.");
+										}
 										break;
 									}
 								} while(menuhelper == 0); menuhelper = 0;
@@ -104,7 +107,11 @@ public class Main {
 								System.out.println("Geben Sie bitte Ihren Termincode ein");
 								String appointmentCodePDF = sc.nextLine();
 								Appointment bookedAppointment = patient0.getAppointmentFromCode(appointmentCodePDF, calendar);
-								new PdfCreator().createConfirmationPdf(bookedAppointment);
+								if (bookedAppointment != null && bookedAppointment.getPatient() != null){
+									new PdfCreator().createConfirmationPdf(bookedAppointment);
+								} else if (bookedAppointment != null && bookedAppointment.getPatient() == null){
+									System.out.println("Fehler im Termincode.");
+								}
 								break;
 							case 2: // Terminliste als PDF
 								int vaccineCenterNumber2 = setVaccineCenterInput(vaccinationSites);
@@ -152,9 +159,9 @@ public class Main {
     	String postalCode = sc.nextLine();
     	System.out.println("Geben Sie ihren Wohnort ein");
     	String city = sc.nextLine();
-    	System.out.println("Geben Sie ihre Straße ein");
+    	System.out.println("Geben Sie ihre Straï¿½e ein");
     	String streetName = sc.nextLine();
-    	System.out.println("Geben Sie ihre Straßennummer ein");
+    	System.out.println("Geben Sie ihre Straï¿½ennummer ein");
     	String streetNo = sc.nextLine();
     	System.out.println("Geben Sie ihre Festnetznummer ein");
     	String telephoneNo = sc.nextLine();

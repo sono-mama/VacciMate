@@ -17,13 +17,20 @@ public class User {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Appointment getAppointmentFromCode (String code, CalendarManager calendar){
+    public Appointment getAppointmentFromCode(String code, CalendarManager calendar) {
 
-        int day = Character.getNumericValue(code.charAt(code.length()-1));
-        int slot = Character.getNumericValue(code.charAt(code.length()-2));
-        int vaccCenter = Character.getNumericValue(code.charAt(0));
+        Appointment appointment = null;
 
-        return calendar.days.get(day)[vaccCenter][slot];
+        try {
+            int day = Character.getNumericValue(code.charAt(code.length() - 1));
+            int slot = Character.getNumericValue(code.charAt(code.length() - 2));
+            int vaccCenter = Character.getNumericValue(code.charAt(0));
+
+            return calendar.days.get(day)[vaccCenter][slot];
+        } catch (Exception e) {
+            System.out.println("Fehler im Termincode.");
+        }
+        return appointment;
     }
 
     public void showAppointment(String code, CalendarManager calendar){
