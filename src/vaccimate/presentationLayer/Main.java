@@ -112,6 +112,12 @@ public class Main {
 								} else if (bookedAppointment != null && bookedAppointment.getPatient() == null){
 									System.out.println("Fehler im Termincode.");
 								}
+								System.out.println("Stimmen die Patientendaten ueberein?\n1 - ja\n2 - nein");
+								int numberConfirmationPatient = sc2.nextInt();
+								if (numberConfirmationPatient == 1) {
+									reception.confirmPatientData(appointmentCodePDF, calendar);
+								}
+								else {menuhelper = 1;}
 								break;
 							case 2: // Terminliste als PDF
 								int vaccineCenterNumber2 = setVaccineCenterInput(vaccinationSites);
@@ -131,8 +137,20 @@ public class Main {
 							case 1: // Aufruf setVaccineStatus();
 								System.out.println("Geben Sie bitte Ihren Termincode ein");
 								String appointmentCodeStatus = sc.nextLine();
-								doctor0.setVaccineStatus(appointmentCodeStatus, calendar);
-								System.out.println("Impfung erfolgreich absolviert");
+								if (doctor0.getPatientData(appointmentCodeStatus, calendar)) {
+									System.out.println("Die Impfung kann jetzt durchgefuehrt werden");
+									System.out.println("1 - Impfung abgeschlossen\n2 - Impfung abgebrochen");
+									int numberCompletionAppointment = sc2.nextInt();
+									if (numberCompletionAppointment == 1) {
+										System.out.println("Die Impfung wurde erfolgreich absolviert und der Termin ist abgearbeitet");
+										doctor0.setVaccineStatus(appointmentCodeStatus, calendar);
+									}
+									if (numberCompletionAppointment == 2) {
+										System.out.println("Die Impfung wurde abgebrochen");
+										menuhelper = 1;
+									}
+								}
+								else {menuhelper = 1;}
 								break;
 						}
 					} while(menuhelper == 0); menuhelper = 0;
