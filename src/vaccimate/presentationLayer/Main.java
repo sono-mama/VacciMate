@@ -26,10 +26,6 @@ public class Main {
 
 		Reception reception = new Reception("Max", "Mayer", init.getVaccinationSites()[0]);
 
-
-
-
-
 		int menuhelper = 0;
 		Patient patient0 = new Patient("0", "0");
 		Doctor doctor0 = new Doctor("", "", null);
