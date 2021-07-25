@@ -28,6 +28,7 @@ public class Patient extends User {
 
     public void setAppointment(int vaccCenter, CalendarManager calendar, Patient patient, int vaccine){
 
+       // setting non plausible values so that setFollowUpAppointment only gets called if the first appointment was booked successfully.
        int day = 99999999;
        int slot = 99999999;
 
@@ -72,6 +73,7 @@ public class Patient extends User {
         }
     }
 
+    // setting a corresponding second appointment after a set duration according to STIKO guidelines.
     public void setFollowUpAppointment(int vaccCenter, CalendarManager calendar, Appointment firstAppointment, int day, int slot) throws
             IndexOutOfBoundsException {
         try{

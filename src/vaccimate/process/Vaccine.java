@@ -16,6 +16,11 @@ public class Vaccine {
 
     public boolean eligiblityCheck(Patient patient){
 
+        /* function to check if the patient is eligible for receiving the selected vaccine.
+        Representing the current guidelines by RKI and STIKO. This function is subject to change
+        should the underlying guidelines change. (See RKI and STIKO websites)
+        */
+
         boolean eligibility;
 
         if (patient.getAge() < 12){

@@ -13,6 +13,8 @@ import java.time.LocalDate;
 
 public class PdfCreator {
 
+    // see iText7 documentation for further information.
+
     public PdfCreator() {
     }
 
