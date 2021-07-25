@@ -12,10 +12,10 @@ public class Appointment {
     private Patient patient;
     private VaccinationSite site;
     private Vaccine vaccine;
-    boolean isBooked;
-    boolean vaccineGiven;
-    boolean patientDataChecked;
-    String[] startTime;
+    private boolean isBooked;
+    private boolean vaccineGiven;
+    private boolean patientDataChecked;
+    private String[] startTime;
 
     public Appointment(LocalDate inDate, int slot) {
         this.isBooked = false;

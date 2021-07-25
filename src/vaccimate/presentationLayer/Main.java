@@ -18,24 +18,13 @@ public class Main {
 
 
     public static void main(String[] args) throws NumberFormatException, IOException {
-	// write your code here
+
 
 		Init init = new Init();
 		VaccinationSite[] vaccinationSites = init.getVaccinationSites();
-
-
-
 		CalendarManager calendar = new CalendarManager(90, LocalDate.now());
 
-
-        Address pat1Add = new Address("Musterstr.", "1", "12151", "Berlin");
-        Contact pat1Cont = new Contact("03032590909", "01764589901", "max.mustermann@web.de");
-        Patient pat1 = new Patient("Max", "Mustermann", pat1Add, 89, pat1Cont, true);
-
-		// pat1.setAppointment(0, calendar, pat1, 1);
-
 		Reception reception = new Reception("Max", "Mayer", init.getVaccinationSites()[0]);
-		// reception.createAppointmentList(0, calendar);
 
 
 

@@ -26,7 +26,7 @@ public class User {
             int slot = Character.getNumericValue(code.charAt(code.length() - 2));
             int vaccCenter = Character.getNumericValue(code.charAt(0));
 
-            return calendar.days.get(day)[vaccCenter][slot];
+            return calendar.getDays().get(day)[vaccCenter][slot];
         } catch (Exception e) {
             System.out.println("Fehler im Termincode.");
         }

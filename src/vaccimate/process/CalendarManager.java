@@ -10,9 +10,9 @@ public class CalendarManager {
     (DayManager).
     */
 
-    public int numberOfDays;
-    public ArrayList<Appointment[][]> days;
-    public LocalDate startDate;
+    private int numberOfDays;
+    private ArrayList<Appointment[][]> days;
+    private LocalDate startDate;
 
     public CalendarManager(int numberOfDays, LocalDate startDate) {
         this.numberOfDays = numberOfDays;
@@ -21,8 +21,19 @@ public class CalendarManager {
 
         for (int i = 0; i < numberOfDays; i++){
             LocalDate nextDate = startDate.plusDays(i);
-            days.add(new DayManager(nextDate).appointments);
+            days.add(new DayManager(nextDate).getAppointments());
         }
+    }
 
+    public int getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public ArrayList<Appointment[][]> getDays() {
+        return days;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
     }
 }

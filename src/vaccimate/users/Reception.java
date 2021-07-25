@@ -22,11 +22,11 @@ public class Reception extends Employee {
 
         Appointment[] appointments;
 
-        if (calendar.startDate.compareTo(LocalDate.now()) == 0){
-           appointments = calendar.days.get(0)[vaccCenter];
+        if (calendar.getStartDate().compareTo(LocalDate.now()) == 0){
+           appointments = calendar.getDays().get(0)[vaccCenter];
         } else {
-            int index = calendar.startDate.compareTo(LocalDate.now());
-            appointments = calendar.days.get(index)[vaccCenter];
+            int index = calendar.getStartDate().compareTo(LocalDate.now());
+            appointments = calendar.getDays().get(index)[vaccCenter];
         }
 
         System.out.println("Termine für heute (" + LocalDate.now() + ") in chronologischer Reihenfolge: ");

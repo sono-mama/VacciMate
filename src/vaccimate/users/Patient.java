@@ -28,20 +28,20 @@ public class Patient extends User {
 
     public void setAppointment(int vaccCenter, CalendarManager calendar, Patient patient, int vaccine){
 
-       int day = 99999999; // unsicher????
+       int day = 99999999;
        int slot = 99999999;
 
        search:
-        for (int i = 0; i < calendar.numberOfDays; i++){
-            for (int j = 0; j < calendar.days.get(i)[vaccCenter].length; j++){
-                if (!calendar.days.get(i)[vaccCenter][j].isBooked()){
-                    calendar.days.get(i)[vaccCenter][j].setPatient(patient);
-                    calendar.days.get(i)[vaccCenter][j].setVaccine(Init.vaccineArray[vaccine]);
-                    calendar.days.get(i)[vaccCenter][j].setCode(new CodeManager().generateCode(patient.getId(), vaccCenter, i, j));
-                    calendar.days.get(i)[vaccCenter][j].setBooked(true);
-                    calendar.days.get(i)[vaccCenter][j].setSite(Init.vaccinationSites[vaccCenter]);
+        for (int i = 0; i < calendar.getNumberOfDays(); i++){
+            for (int j = 0; j < calendar.getDays().get(i)[vaccCenter].length; j++){
+                if (!calendar.getDays().get(i)[vaccCenter][j].isBooked()){
+                    calendar.getDays().get(i)[vaccCenter][j].setPatient(patient);
+                    calendar.getDays().get(i)[vaccCenter][j].setVaccine(Init.vaccineArray[vaccine]);
+                    calendar.getDays().get(i)[vaccCenter][j].setCode(new CodeManager().generateCode(patient.getId(), vaccCenter, i, j));
+                    calendar.getDays().get(i)[vaccCenter][j].setBooked(true);
+                    calendar.getDays().get(i)[vaccCenter][j].setSite(Init.vaccinationSites[vaccCenter]);
                     
-                    Appointment bookedAppointment = calendar.days.get(i)[vaccCenter][j];
+                    Appointment bookedAppointment = calendar.getDays().get(i)[vaccCenter][j];
 
                     day = i;
                     slot = j;
@@ -68,7 +68,7 @@ public class Patient extends User {
                     "späteren Zeitpunkt erneut.");
         }
         if (day != 99999999 && slot != 99999999){
-            setFollowUpAppointment(vaccCenter, calendar, calendar.days.get(day)[vaccCenter][slot], day, slot);
+            setFollowUpAppointment(vaccCenter, calendar, calendar.getDays().get(day)[vaccCenter][slot], day, slot);
         }
     }
 
@@ -76,13 +76,13 @@ public class Patient extends User {
             IndexOutOfBoundsException {
         try{
             int nextDay = day + firstAppointment.getVaccine().getWaitingPeriod();
-            calendar.days.get(nextDay)[vaccCenter][slot].setPatient(firstAppointment.getPatient());
-            calendar.days.get(nextDay)[vaccCenter][slot].setVaccine(firstAppointment.getVaccine());
-            calendar.days.get(nextDay)[vaccCenter][slot].setCode(new CodeManager().generateCode(firstAppointment.getPatient().getId(), vaccCenter, day, slot));
-            calendar.days.get(nextDay)[vaccCenter][slot].setBooked(true);
-            calendar.days.get(nextDay)[vaccCenter][slot].setSite(Init.vaccinationSites[vaccCenter]);
+            calendar.getDays().get(nextDay)[vaccCenter][slot].setPatient(firstAppointment.getPatient());
+            calendar.getDays().get(nextDay)[vaccCenter][slot].setVaccine(firstAppointment.getVaccine());
+            calendar.getDays().get(nextDay)[vaccCenter][slot].setCode(new CodeManager().generateCode(firstAppointment.getPatient().getId(), vaccCenter, day, slot));
+            calendar.getDays().get(nextDay)[vaccCenter][slot].setBooked(true);
+            calendar.getDays().get(nextDay)[vaccCenter][slot].setSite(Init.vaccinationSites[vaccCenter]);
 
-            Appointment bookedAppointment = calendar.days.get(nextDay)[vaccCenter][slot];
+            Appointment bookedAppointment = calendar.getDays().get(nextDay)[vaccCenter][slot];
 
             System.out.println("Dies ist ihr Zweittermin:");
             System.out.println("Datum: " + bookedAppointment.getDate());

@@ -2,22 +2,34 @@ package vaccimate.process;
 
 import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
+import vaccimate.users.Doctor;
+import vaccimate.users.Reception;
 
 public class Init {
 
+    /*
+    The non-existence of a database makes it necessary to include certain data (e.g. vaccine centers,
+    addresses, doctors or reception staff directly into the code. To keep the Main class more clean, this
+    data has been included in this class which gets initialized upon program start. In a real world scenario
+    this would be handled in a different way.
+    */
 
     public static Vaccine[] vaccineArray = new Vaccine[3];
     public static Address[] addressArray = new Address[6];
     public static VaccinationSite[] vaccinationSites = new VaccinationSite[6];
+    public static Doctor[] doctors = new Doctor[6];
+    public static Reception[] receptionStaff = new Reception[6];
 
     public Init() {
-        init(vaccineArray, addressArray, vaccinationSites);
+        init(vaccineArray, addressArray, vaccinationSites, doctors, receptionStaff);
     }
 
-    private void init(Vaccine[] vaccineArray, Address[] addressArray, VaccinationSite[] vaccinationSites){
+    private void init(Vaccine[] vaccineArray, Address[] addressArray, VaccinationSite[] vaccinationSites, Doctor[] doctors, Reception[] receptionStaff){
         initVaccines(vaccineArray);
         initAddress(addressArray);
         initVaccCenters(vaccinationSites, vaccineArray, addressArray);
+        initDoctors(doctors, vaccinationSites);
+        initReceptionStaff(receptionStaff, vaccinationSites);
     }
 
     private void initVaccines(Vaccine[] vaccineArray){
@@ -65,15 +77,26 @@ public class Init {
         vaccinationSites[5] = new VaccinationSite(vaccinationCenterNames[5], vaccineArray[0], null, addressArray[5], vaccSiteContact);
     }
 
-    public Vaccine[] getVaccineArray() {
-        return vaccineArray;
+    private void initDoctors(Doctor[] doctors, VaccinationSite[] vaccinationSites){
+
+        String[] firstNames = {"Max", "Mohammed", "Charly", "Richard", "Franziska", "Kerstin"};
+        String[] lastNames = {"Müller", "Mayer", "Jackson", "Rickson", "Franziskus", "Schneider"};
+
+        for(int i = 0; i < 6; i++){
+            doctors[i] = new Doctor(firstNames[i], lastNames[i], vaccinationSites[i]);
+        }
     }
 
+    private void initReceptionStaff(Reception[] receptionStaff, VaccinationSite[] vaccinationSites){
 
-    public Address[] getAddressArray() {
-        return addressArray;
+        String[] firstNames = {"Sandra", "Phuong", "Mike", "Marta", "Sarah", "Chris"};
+        String[] lastNames = {"Müller", "Tran", "Jackson", "Martason", "Meyer", "Schneider"};
+
+        for(int i = 0; i < 6; i++){
+            receptionStaff[i] = new Reception(firstNames[i], lastNames[i], vaccinationSites[i]);
+        }
+
     }
-
 
     public VaccinationSite[] getVaccinationSites() {
         return vaccinationSites;

@@ -11,10 +11,10 @@ public class DayManager {
     timeslots. This class provides the structure for saving the appointments.
     */
 
-    public int numberOfSites = 6;
-    public int numberOfSlots = 30;
-    public Appointment[][] appointments;
-    public int[] availability = new int[numberOfSites];
+    private int numberOfSites = 6;
+    private int numberOfSlots = 30;
+    private Appointment[][] appointments;
+    private int[] availability = new int[numberOfSites];
 
     public DayManager(LocalDate date) {
         appointments = new Appointment[numberOfSites][numberOfSlots];
@@ -26,7 +26,9 @@ public class DayManager {
         for (int k = 0; k < numberOfSites; k++){
             availability[k] = numberOfSlots;
         }
+    }
 
-
+    public Appointment[][] getAppointments() {
+        return appointments;
     }
 }
