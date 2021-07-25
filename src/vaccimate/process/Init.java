@@ -101,5 +101,15 @@ public class Init {
     public VaccinationSite[] getVaccinationSites() {
         return vaccinationSites;
     }
+    
+    public Doctor[] getDoctors() {
+        return doctors;
+    }
+    
+    public Reception[] getReceptionStaff() {
+        return receptionStaff;
+    }
 
 }
+
+

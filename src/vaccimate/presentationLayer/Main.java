@@ -22,13 +22,18 @@ public class Main {
 
 		Init init = new Init();
 		VaccinationSite[] vaccinationSites = init.getVaccinationSites();
+		Reception[] receptionStaff = init.getReceptionStaff();
+		Doctor[] doctors = init.getDoctors();
 		CalendarManager calendar = new CalendarManager(90, LocalDate.now());
 
-		Reception reception = new Reception("Max", "Mayer", init.getVaccinationSites()[0]);
+
+
+
 
 		int menuhelper = 0;
 		Patient patient0 = new Patient("0", "0");
 		Doctor doctor0 = new Doctor("", "", null);
+		Vaccine vaccine0 = new Vaccine("", "", 0);
 		Scanner sc = new Scanner(System.in);
 		Scanner sc2 = new Scanner(System.in);
         do {
@@ -51,7 +56,11 @@ public class Main {
 								Patient patient = setPatientDataInput();
 								int vaccineCenterNumber = setVaccineCenterInput(vaccinationSites);
 								int vaccineNumber = setVaccineInput(vaccineCenterNumber, vaccinationSites);
-								patient.setAppointment(vaccineCenterNumber, calendar, patient, vaccineNumber);
+								boolean eligibility = vaccine0.eligiblityCheck(patient);
+								if (eligibility) {
+									patient.setAppointment(vaccineCenterNumber, calendar, patient, vaccineNumber);
+								}
+								else {System.out.println("Der Impfstoff ist nicht geeignet");}
 								break;
 							case 2: // Termin aufrufen mit der M�glichkeit der Stornierung oder der PDF - Erzeugung
 								do {
@@ -81,6 +90,18 @@ public class Main {
 					} while(menuhelper == 0); menuhelper = 0;
 					break;
 				case 2: // Rezeption
+					System.out.println("In welchem Impfzentrum arbeiten Sie");
+					System.out.println("1 - "+vaccinationSites[0].getName()+ "\n" + "2 - "+vaccinationSites[1].getName()+ "\n" + "3 - "+vaccinationSites[2].getName()+ "\n" + "4 - "+vaccinationSites[3].getName()+ "\n" + "5 - "+vaccinationSites[4].getName()+ "\n" + "6 - "+vaccinationSites[5].getName());
+		        	int numberReceptionStaff = sc.nextInt();
+		        	Reception receptionSelection = new Reception(null, null, null);
+		        	switch (numberReceptionStaff) {
+		        		case 1: receptionSelection = receptionStaff[0]; break;
+		        		case 2: receptionSelection = receptionStaff[1]; break;
+		        		case 3: receptionSelection = receptionStaff[2]; break;
+		        		case 4: receptionSelection = receptionStaff[3]; break;
+		        		case 5: receptionSelection = receptionStaff[4]; break;
+		        		case 6: receptionSelection = receptionStaff[5]; break;
+		        	}
 					do {
 						System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
 						System.out.println("0 - zurueck\n1 - Termin aufrufen\n2 - Terminuebersicht anzeigen");
@@ -90,28 +111,39 @@ public class Main {
 							case 0: menuhelper = 1; break;
 							case 1: // Einzelnen Termin anzeigen
 								System.out.println("Geben Sie bitte Ihren Termincode ein");
-								String appointmentCodePDF = sc.nextLine();
+								String appointmentCodePDF = sc2.nextLine();
 								Appointment bookedAppointment = patient0.getAppointmentFromCode(appointmentCodePDF, calendar);
 								if (bookedAppointment != null && bookedAppointment.getPatient() != null){
 									new PdfCreator().createConfirmationPdf(bookedAppointment);
+									System.out.println("Stimmen die Patientendaten ueberein?\n1 - ja\n2 - nein");
+									int numberConfirmationPatient = sc2.nextInt();
+									if (numberConfirmationPatient == 1) {
+										receptionSelection.confirmPatientData(appointmentCodePDF, calendar);
+									}
+									else {menuhelper = 1;}
 								} else if (bookedAppointment != null && bookedAppointment.getPatient() == null){
 									System.out.println("Fehler im Termincode.");
 								}
-								System.out.println("Stimmen die Patientendaten ueberein?\n1 - ja\n2 - nein");
-								int numberConfirmationPatient = sc2.nextInt();
-								if (numberConfirmationPatient == 1) {
-									reception.confirmPatientData(appointmentCodePDF, calendar);
-								}
-								else {menuhelper = 1;}
 								break;
 							case 2: // Terminliste als PDF
-								int vaccineCenterNumber2 = setVaccineCenterInput(vaccinationSites);
-								reception.createAppointmentList(vaccineCenterNumber2, calendar);
-								break;		
+								receptionSelection.createAppointmentList(numberReceptionStaff -1, calendar);
+								break;
 						}
         			} while(menuhelper == 0); menuhelper = 0;
         			break;
 				case 3: // Arzt
+					System.out.println("In welchem Impfzentrum arbeiten Sie");
+					System.out.println("1 - "+vaccinationSites[0].getName()+ "\n" + "2 - "+vaccinationSites[1].getName()+ "\n" + "3 - "+vaccinationSites[2].getName()+ "\n" + "4 - "+vaccinationSites[3].getName()+ "\n" + "5 - "+vaccinationSites[4].getName()+ "\n" + "6 - "+vaccinationSites[5].getName());
+		        	int numberDoctorStaff = sc.nextInt();
+		        	Doctor doctorSelection = new Doctor(null, null, null);
+		        	switch (numberDoctorStaff) {
+		        		case 1: doctorSelection = doctors[0]; break;
+		        		case 2: doctorSelection = doctors[1]; break;
+		        		case 3: doctorSelection = doctors[2]; break;
+		        		case 4: doctorSelection = doctors[3]; break;
+		        		case 5: doctorSelection = doctors[4]; break;
+		        		case 6: doctorSelection = doctors[5]; break;
+		        	}
 					do {
 						System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
 						System.out.println("0 - zurueck\n1 - Patient impfen");
@@ -121,21 +153,20 @@ public class Main {
 							case 0: menuhelper = 1; break;
 							case 1: // Aufruf setVaccineStatus();
 								System.out.println("Geben Sie bitte Ihren Termincode ein");
-								String appointmentCodeStatus = sc.nextLine();
+								String appointmentCodeStatus = sc2.nextLine();
 								if (doctor0.getPatientData(appointmentCodeStatus, calendar)) {
 									System.out.println("Die Impfung kann jetzt durchgefuehrt werden");
 									System.out.println("1 - Impfung abgeschlossen\n2 - Impfung abgebrochen");
 									int numberCompletionAppointment = sc2.nextInt();
 									if (numberCompletionAppointment == 1) {
 										System.out.println("Die Impfung wurde erfolgreich absolviert und der Termin ist abgearbeitet");
-										doctor0.setVaccineStatus(appointmentCodeStatus, calendar);
+										doctorSelection.setVaccineStatus(appointmentCodeStatus, calendar);
 									}
 									if (numberCompletionAppointment == 2) {
 										System.out.println("Die Impfung wurde abgebrochen");
 										menuhelper = 1;
 									}
 								}
-								else {menuhelper = 1;}
 								break;
 						}
 					} while(menuhelper == 0); menuhelper = 0;
@@ -153,18 +184,26 @@ public class Main {
     	System.out.println("Geben Sie bitte ihren Nachnamen ein");
     	String lastName = sc.nextLine();
     	
-    	System.out.println("Geben Sie bitte ihr Alter ein - Momentan true oder false in der Konsole");
+    	System.out.println("Geben Sie bitte ihr Alter ein");
     	int age = sc2.nextInt();
     	System.out.println("Haben Sie Allergien?");
-    	boolean allergies = sc2.nextBoolean();
+    	System.out.println("1 - ja"+"\n2 - nein");
+    	int numberAllergies = sc2.nextInt();
+    	boolean allergies = false;
+    	if (numberAllergies == 1) { 
+    		allergies = true; 
+    	} 
+    	if (numberAllergies == 2) {
+    		allergies = false;
+    	}
     	
     	System.out.println("Geben Sie ihre Postleitzahl ein");
     	String postalCode = sc.nextLine();
     	System.out.println("Geben Sie ihren Wohnort ein");
     	String city = sc.nextLine();
-    	System.out.println("Geben Sie ihre Stra�e ein");
+    	System.out.println("Geben Sie ihre Strasse ein");
     	String streetName = sc.nextLine();
-    	System.out.println("Geben Sie ihre Stra�ennummer ein");
+    	System.out.println("Geben Sie ihre Strassennummer ein");
     	String streetNo = sc.nextLine();
     	System.out.println("Geben Sie ihre Festnetznummer ein");
     	String telephoneNo = sc.nextLine();
@@ -216,5 +255,7 @@ public class Main {
         	return -1;
     }
 }
+
+
 
 
