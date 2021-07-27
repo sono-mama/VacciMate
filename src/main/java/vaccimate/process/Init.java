@@ -24,7 +24,7 @@ public class Init {
         init(vaccineArray, addressArray, vaccinationSites, doctors, receptionStaff);
     }
 
-    private void init(Vaccine[] vaccineArray, Address[] addressArray, VaccinationSite[] vaccinationSites, Doctor[] doctors, Reception[] receptionStaff){
+    public void init(Vaccine[] vaccineArray, Address[] addressArray, VaccinationSite[] vaccinationSites, Doctor[] doctors, Reception[] receptionStaff){
         initVaccines(vaccineArray);
         initAddress(addressArray);
         initVaccCenters(vaccinationSites, vaccineArray, addressArray);
@@ -32,7 +32,7 @@ public class Init {
         initReceptionStaff(receptionStaff, vaccinationSites);
     }
 
-    private void initVaccines(Vaccine[] vaccineArray){
+    public void initVaccines(Vaccine[] vaccineArray){
         // currently used vaccines in the vaccination centers
         String[] vaccineName = {"Comirnaty", "Spikevax", "Vaxzevria"};
         String[] vaccineBrand = {"Pfizer-BioNTech", "Moderna", "AstraZeneca"};
@@ -43,7 +43,7 @@ public class Init {
         }
     }
 
-    private void initAddress(Address[] addressArray){
+    public void initAddress(Address[] addressArray){
         // currently operating vaccination centers in Berlin. See: https://service.berlin.de/standorte/impfzentren/
         String[] streetName = {"Eichenstr.", "Müllerstr.", "Saatwinklerdamm", "Terminal C", "Tempelhoferdamm", "Hammarskjöldplatz", "Paul-Heyse-Str."};
         String[] streetNo = {"4", "185", "", "57", "5", "26"};
@@ -56,7 +56,7 @@ public class Init {
 
     }
 
-    private void initVaccCenters(VaccinationSite[] vaccinationSites, Vaccine[] vaccineArray, Address[] addressArray){
+    public void initVaccCenters(VaccinationSite[] vaccinationSites, Vaccine[] vaccineArray, Address[] addressArray){
     	/*
          vaccinationSites[0]: Arena Berlin
          vaccinationSites[1]: Erika Hess Eisstadion
@@ -77,7 +77,7 @@ public class Init {
         vaccinationSites[5] = new VaccinationSite(vaccinationCenterNames[5], vaccineArray[0], null, addressArray[5], vaccSiteContact);
     }
 
-    private void initDoctors(Doctor[] doctors, VaccinationSite[] vaccinationSites){
+    public void initDoctors(Doctor[] doctors, VaccinationSite[] vaccinationSites){
 
         String[] firstNames = {"Max", "Mohammed", "Charly", "Richard", "Franziska", "Kerstin"};
         String[] lastNames = {"Müller", "Mayer", "Jackson", "Rickson", "Franziskus", "Schneider"};
@@ -87,7 +87,7 @@ public class Init {
         }
     }
 
-    private void initReceptionStaff(Reception[] receptionStaff, VaccinationSite[] vaccinationSites){
+    public void initReceptionStaff(Reception[] receptionStaff, VaccinationSite[] vaccinationSites){
 
         String[] firstNames = {"Sandra", "Phuong", "Mike", "Marta", "Sarah", "Chris"};
         String[] lastNames = {"Müller", "Tran", "Jackson", "Martason", "Meyer", "Schneider"};
