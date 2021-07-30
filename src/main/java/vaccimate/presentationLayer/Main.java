@@ -239,21 +239,23 @@ public class Main {
 		return -1;
     	}
     
-    	public static int setVaccineCenterInput(VaccinationSite[] vaccinationSites) {
-        	Scanner sc = new Scanner(System.in);
-        	System.out.println("Bitte Impfzentrum durch Eingabe der passenden Zahl waehlen");
-        	System.out.println("1 - "+vaccinationSites[0].getName()+ "\n" + "2 - "+vaccinationSites[1].getName()+ "\n" + "3 - "+vaccinationSites[2].getName()+ "\n" + "4 - "+vaccinationSites[3].getName()+ "\n" + "5 - "+vaccinationSites[4].getName()+ "\n" + "6 - "+vaccinationSites[5].getName());
-        	int numberVaccine = sc.nextInt();
-        	switch (numberVaccine) {
-        		case 1: return 0; 
-        		case 2: return 1; 
-        		case 3: return 2;
-        		case 4: return 3; 
-        		case 5: return 4; 
-        		case 6: return 5;
-        	}
-        	return -1;
-    }
+    public static int setVaccineCenterInput(VaccinationSite[] vaccinationSites) {
+    	Scanner sc = new Scanner(System.in);
+    	System.out.println("Bitte Impfzentrum durch Eingabe der passenden Zahl waehlen");
+    	for (int i = 0; i < vaccinationSites.length; i++) {
+    		System.out.println(i+1 + " - " + vaccinationSites[i].getName());
+    	}
+    	int numberVaccine = sc.nextInt();
+    	switch (numberVaccine) {
+    		case 1: return 0; 
+    		case 2: return 1; 
+    		case 3: return 2;
+    		case 4: return 3; 
+    		case 5: return 4; 
+    		case 6: return 5;
+    	}
+    	return -1;
+}
 }
 
 
