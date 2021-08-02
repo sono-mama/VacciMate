@@ -10,7 +10,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
-class XML_ReadPatient {
+public class XML_ReadPatient {
 
 	Document doc = null;
 	String firstName = "";
@@ -89,7 +89,7 @@ class XML_ReadPatient {
 
 		}
 	
-	Document readPatientDocument(String filename) {
+	public Document readPatientDocument(String filename) {
 		try {
 			File PatientFile = new File(filename);
 			SAXBuilder builder = new SAXBuilder();

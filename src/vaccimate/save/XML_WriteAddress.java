@@ -17,14 +17,14 @@ public class XML_WriteAddress {
 
 	private final static File FILE = new File(DATNAM);
 
-	 Document createDocAddress(String rootElementAddress) {
+	 public Document createDocAddress(String rootElementAddress) {
 		Document docAddress = new Document();
 		Element rootAddress = new Element(rootElementAddress);
 		docAddress.setRootElement(rootAddress);
 		return docAddress;
 	}
 	
-	void writeDocAddress(Document docAddress, String strName, String strNo, String postCode, String ci) {
+	public void writeDocAddress(Document docAddress, String strName, String strNo, String postCode, String ci) {
 		
 		Element Address = new Element ("Address");
 		
@@ -47,7 +47,7 @@ public class XML_WriteAddress {
         docAddress.getRootElement().addContent(Address);
     }
 	
-	void writeXMLAddress(Document doc) {
+	public void writeXMLAddress(Document doc) {
         Format format = Format.getPrettyFormat();
         format.setIndent("    ");
         try (FileOutputStream fos = new FileOutputStream(FILE)) {

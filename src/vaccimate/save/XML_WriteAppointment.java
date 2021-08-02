@@ -17,14 +17,14 @@ public class XML_WriteAppointment {
 
 	private final static File FILE = new File(DATNAM);
 
-	 Document createDocAppointment(String rootElementAppointment) {
+	 public Document createDocAppointment(String rootElementAppointment) {
 		Document docAppointment = new Document();
 		Element rootAppointment = new Element(rootElementAppointment);
 		docAppointment.setRootElement(rootAppointment);
 		return docAppointment;
 	}
 	
-	void writeDocAppointment(Document docAppointment, String c, String d, String p, String s, String v, String isB, String vGiven, String pDC, String sT) {
+	public void writeDocAppointment(Document docAppointment, String c, String d, String p, String s, String v, String isB, String vGiven, String pDC, String sT) {
 		
 		Element Appointment = new Element ("Appointment");
 		
@@ -68,7 +68,7 @@ public class XML_WriteAppointment {
     }
 	
 	//Methode zum Schreiben der Datei
-	void writeXMLAppointment(Document doc) {
+	public void writeXMLAppointment(Document doc) {
         Format format = Format.getPrettyFormat();
         format.setIndent("    ");
         try (FileOutputStream fos = new FileOutputStream(FILE)) {

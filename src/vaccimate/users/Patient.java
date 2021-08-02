@@ -9,7 +9,7 @@ import vaccimate.process.*;
 
 public class Patient extends User {
 
-    private Address address;
+	private Address address;
     private int age;
     private Contact contact;
     private boolean allergies;

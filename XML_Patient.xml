@@ -3,15 +3,8 @@
     <Patient>
         <firstName>Arne</firstName>
         <lastName>Bornschein</lastName>
-        <id>1</id>
+        <id>4b281d6b-fcc8-413e-adac-f76ec599f2df</id>
         <age>18</age>
         <allergies>true</allergies>
-    </Patient>
-    <Patient>
-        <firstName>Joe</firstName>
-        <lastName>Dawn</lastName>
-        <id>2</id>
-        <age>45</age>
-        <allergies>false</allergies>
     </Patient>
 </Patient>

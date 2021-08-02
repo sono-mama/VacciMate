@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Contacts>
     <Contact>
-        <telephoneNo>123</telephoneNo>
-        <mobileNo>456</mobileNo>
-        <email>@gmx.de</email>
-    </Contact>
-    <Contact>
-        <telephoneNo>321</telephoneNo>
-        <mobileNo>654</mobileNo>
-        <email>@web.de</email>
+        <telephoneNo>123456789</telephoneNo>
+        <mobileNo>098765432</mobileNo>
+        <email>Deimakor@gmx.de</email>
     </Contact>
 </Contacts>

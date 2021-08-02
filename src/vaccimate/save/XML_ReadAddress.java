@@ -10,7 +10,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
-class XML_ReadAddress {
+public class XML_ReadAddress {
 
 	Document doc = null;
 	String streetName = "";
@@ -87,7 +87,7 @@ class XML_ReadAddress {
 
 		}
 	
-	Document readAddressDocument(String filename) {
+	public Document readAddressDocument(String filename) {
 		try {
 			File AddressFile = new File(filename);
 			SAXBuilder builder = new SAXBuilder();

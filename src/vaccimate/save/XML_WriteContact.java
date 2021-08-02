@@ -17,7 +17,7 @@ public class XML_WriteContact {
 
 	private final static File FILE = new File(DATNAM);
 
-	 Document createDocContact(String rootElementContact) {
+	 public Document createDocContact(String rootElementContact) {
 		Document docContact = new Document();
 		Element rootContact = new Element(rootElementContact);
 		docContact.setRootElement(rootContact);
@@ -25,7 +25,7 @@ public class XML_WriteContact {
 	}
 	
 	//Methode zum Erstellen eines Contacts im DOC-Object (Memory)
-	void writeDocContact(Document docContact, String telnr, String mobnr, String emailadr) {
+	public void writeDocContact(Document docContact, String telnr, String mobnr, String emailadr) {
 		
 		Element Contact = new Element ("Contact");
 		
@@ -45,7 +45,7 @@ public class XML_WriteContact {
     }
 	
 	//Methode zum Schreiben der Datei
-	void writeXMLContact(Document doc) {
+	public void writeXMLContact(Document doc) {
         Format format = Format.getPrettyFormat();
         format.setIndent("    ");
         try (FileOutputStream fos = new FileOutputStream(FILE)) {

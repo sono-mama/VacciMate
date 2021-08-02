@@ -7,5 +7,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="jdom-2.0.6.jar"/>
+	<classpathentry kind="lib" path="io-7.1.16.jar"/>
+	<classpathentry kind="lib" path="kernel-7.1.16.jar"/>
+	<classpathentry kind="lib" path="layout-7.1.16.jar"/>
+	<classpathentry kind="lib" path="slf4j-api-1.7.31.jar"/>
+	<classpathentry kind="lib" path="slf4j-simple-1.7.31.jar"/>
 	<classpathentry kind="output" path="out/production/VacciMate"/>
 </classpath>

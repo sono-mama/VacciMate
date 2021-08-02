@@ -17,14 +17,14 @@ public class XML_WritePatient {
 
 	private final static File FILE = new File(DATNAM);
 
-	 Document createDocPatient(String rootElementPatient) {
+	 public Document createDocPatient(String rootElementPatient) {
 		Document docPatient = new Document();
 		Element rootPatient = new Element(rootElementPatient);
 		docPatient.setRootElement(rootPatient);
 		return docPatient;
 	}
 	
-	void writeDocPatient(Document docPatient, String fName, String lName, String uid, String agep, String allergiesp) {
+	public void writeDocPatient(Document docPatient, String fName, String lName, String uid, String agep, String allergiesp) {
 		
 		Element Patient = new Element ("Patient");
 		
@@ -52,7 +52,7 @@ public class XML_WritePatient {
     }
 	
 	//Methode zum Schreiben der Datei
-	void writeXMLPatient(Document doc) {
+	public void writeXMLPatient(Document doc) {
         Format format = Format.getPrettyFormat();
         format.setIndent("    ");
         try (FileOutputStream fos = new FileOutputStream(FILE)) {

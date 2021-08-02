@@ -1,10 +1,13 @@
 package vaccimate.presentationLayer;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import org.jdom2.Document;
 
 import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
@@ -13,6 +16,14 @@ import vaccimate.process.*;
 import vaccimate.users.Doctor;
 import vaccimate.users.Patient;
 import vaccimate.users.Reception;
+import vaccimate.save.XML_ReadAppointment;
+import vaccimate.save.XML_WriteAppointment;
+import vaccimate.save.XML_ReadPatient;
+import vaccimate.save.XML_WritePatient;
+import vaccimate.save.XML_ReadAddress;
+import vaccimate.save.XML_WriteAddress;
+import vaccimate.save.XML_ReadContact;
+import vaccimate.save.XML_WriteContact;
 
 public class Main {
 
@@ -61,6 +72,82 @@ public class Main {
 									patient.setAppointment(vaccineCenterNumber, calendar, patient, vaccineNumber);
 								}
 								else {System.out.println("Der Impfstoff ist nicht geeignet");}
+								
+								//Anfang Speichern
+								Document docPatient = null;
+								String PatientFilename = "XML_Patient.xml";
+								File filePatient = new File(PatientFilename);
+								if(filePatient.exists() && !filePatient.isDirectory()) { 
+									XML_ReadPatient readPatient = new XML_ReadPatient();
+									docPatient = readPatient.readPatientDocument(PatientFilename);
+								}
+								
+								XML_WritePatient Patient = new XML_WritePatient();
+								
+								if (docPatient == null) {
+									docPatient = Patient.createDocPatient("Patient");
+								}
+								
+								Patient.writeDocPatient(docPatient, patient.getFirstName(), patient.getLastName(), patient.getId(), String.valueOf(patient.getAge()), String.valueOf(patient.isAllergies()));
+								Patient.writeXMLPatient(docPatient);
+								
+								
+								Document docAddress = null;
+								String AddressFilename = "XML_Address.xml";
+								File fileAddress = new File(AddressFilename);
+								if(fileAddress.exists() && !fileAddress.isDirectory()) { 
+									XML_ReadAddress readAddress = new XML_ReadAddress();
+									docAddress = readAddress.readAddressDocument(AddressFilename);
+								}
+								
+								XML_WriteAddress Address = new XML_WriteAddress();
+								
+								if (docAddress == null) {
+									docAddress = Address.createDocAddress("Address");
+								}
+								
+								Address address = patient.getAddress();
+								Address.writeDocAddress(docAddress,address.getStreetName(), address.getStreetNo(), address.getPostalCode(), address.getCity());	        
+								Address.writeXMLAddress(docAddress);
+								
+								
+								Document docContact = null;
+								String ContactFilename = "XML_Contact.xml";
+								File fileContact = new File(ContactFilename);
+								if(fileContact.exists() && !fileContact.isDirectory()) { 
+									XML_ReadContact readContact = new XML_ReadContact();
+									docContact = readContact.readContactDocument(ContactFilename);
+								}
+								
+								XML_WriteContact Contact = new XML_WriteContact();
+								
+								if (docContact == null) {
+									docContact = Contact.createDocContact("Contacts");
+								}
+								
+								Contact contact = patient.getContact();
+						        Contact.writeDocContact(docContact, contact.getTelephoneNo(), contact.getMobileNo(), contact.getEmail());
+						        Contact.writeXMLContact(docContact);
+						        
+						        Document docAppointment = null;
+								String AppointmentFilename = "XML_Appointment.xml";
+								File fileAppointment = new File(AppointmentFilename);
+								if(fileAppointment.exists() && !fileAppointment.isDirectory()) { 
+									XML_ReadAppointment readAppointment = new XML_ReadAppointment();
+									docAppointment = readAppointment.readAppointmentDocument(AppointmentFilename);
+								}
+								
+								XML_WriteAppointment Appointment = new XML_WriteAppointment();
+								
+								if (docAppointment == null) {
+									docAppointment = Appointment.createDocAppointment("Appointment");
+								}
+						        
+								Appointment.writeDocAppointment(docAppointment,"1234", "1.2.2022", "1", "Tegel", "Moderna", "true", "false", "true", "12:45");
+								Appointment.writeXMLAppointment(docAppointment);
+						        
+								//Ende Speichern
+								
 								break;
 							case 2: // Termin aufrufen mit der M�glichkeit der Stornierung oder der PDF - Erzeugung
 								do {
@@ -216,6 +303,7 @@ public class Main {
     	Contact Cont = new Contact(telephoneNo, mobileNo, email);
     	Patient Pat = new Patient(firstName, lastName, Addr, age, Cont, allergies);
     	return Pat;
+    	
     }
     
     public static int setVaccineInput(int vaccineCenterNumber, VaccinationSite[] vaccinationSites) {

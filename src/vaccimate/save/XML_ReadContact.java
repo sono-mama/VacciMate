@@ -10,7 +10,7 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
-class XML_ReadContact {
+public class XML_ReadContact {
 
 	Document doc = null;
 	String telephoneNo = "";
@@ -132,7 +132,7 @@ class XML_ReadContact {
 	
 		
 	//Methode Lesen der Datei und erstellen doc-Object
-	Document readContactDocument(String filename) {
+	public Document readContactDocument(String filename) {
 		try {
 			File contactFile = new File(filename);
 			// Das Dokument erstellen

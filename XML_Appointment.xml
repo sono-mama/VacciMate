@@ -11,15 +11,4 @@
         <patientDataChecked>true</patientDataChecked>
         <startTime>12:45</startTime>
     </Appointment>
-    <Appointment>
-        <code>4321</code>
-        <date>7.8.2021</date>
-        <patient>2</patient>
-        <site>Schöneberg</site>
-        <vaccine>Biotech</vaccine>
-        <isBooked>false</isBooked>
-        <vaccineGiven>true</vaccineGiven>
-        <patientDataChecked>false</patientDataChecked>
-        <startTime>13:30</startTime>
-    </Appointment>
 </Appointment>
