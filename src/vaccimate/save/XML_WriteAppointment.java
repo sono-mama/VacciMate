@@ -11,6 +11,8 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
+import vaccimate.process.Vaccine;
+
 public class XML_WriteAppointment {
 
 	private final static String DATNAM = "XML_Appointment.xml";
@@ -24,7 +26,7 @@ public class XML_WriteAppointment {
 		return docAppointment;
 	}
 	
-	public void writeDocAppointment(Document docAppointment, String c, String d, String p, String s, String v, String isB, String vGiven, String pDC, String sT) {
+	public void writeDocAppointment(Document docAppointment, String c, String d, String p, String vCN, Vaccine v, String isB, String vGiven, String pDC, String sT) {
 		
 		Element Appointment = new Element ("Appointment");
 		
@@ -36,18 +38,27 @@ public class XML_WriteAppointment {
         date.setText(d);
         Appointment.addContent(date);
         
-        Element patient = new Element("patient");
-        patient.setText(p);
-        Appointment.addContent(patient);
+        Element patientID = new Element("patientID");
+        patientID.setText(p);
+        Appointment.addContent(patientID);
         
-        Element site = new Element("site");
-        site.setText(s);
-        Appointment.addContent(site);
+        Element vaccineCenterNumber = new Element("vaccineCenterNumber");
+        vaccineCenterNumber.setText(vCN);
+        Appointment.addContent(vaccineCenterNumber);
         
-        Element vaccine = new Element("vaccine");
-        vaccine.setText(v);
+        //Verschachtelung (Kindelement)
+        Element vaccine = new Element("vaccine");           
+        Element name = new Element("Name");
+        name.setText(v.getName());
+        Element brand = new Element("Brand");
+        brand.setText(v.getBrand());
+        Element waitingPeriod = new Element("waitingPeriod");
+        waitingPeriod.setText(String.valueOf(v.getWaitingPeriod()));
+        vaccine.addContent(name);
+        vaccine.addContent(brand);
+        vaccine.addContent(waitingPeriod);
         Appointment.addContent(vaccine);
-        
+
         Element isBooked = new Element("isBooked");
         isBooked.setText(isB);
         Appointment.addContent(isBooked);

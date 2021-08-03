@@ -24,7 +24,7 @@ public class XML_WriteAddress {
 		return docAddress;
 	}
 	
-	public void writeDocAddress(Document docAddress, String strName, String strNo, String postCode, String ci) {
+	public void writeDocAddress(Document docAddress, String strName, String strNo, String postCode, String ci, String pID) {
 		
 		Element Address = new Element ("Address");
 		
@@ -43,6 +43,10 @@ public class XML_WriteAddress {
         Element city = new Element("city");
         city.setText(ci);
         Address.addContent(city);
+        
+        Element patientID = new Element("patientID");
+        patientID.setText(pID);
+        Address.addContent(patientID);
         
         docAddress.getRootElement().addContent(Address);
     }

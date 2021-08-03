@@ -25,7 +25,7 @@ public class XML_WriteContact {
 	}
 	
 	//Methode zum Erstellen eines Contacts im DOC-Object (Memory)
-	public void writeDocContact(Document docContact, String telnr, String mobnr, String emailadr) {
+	public void writeDocContact(Document docContact, String telnr, String mobnr, String emailadr, String pID) {
 		
 		Element Contact = new Element ("Contact");
 		
@@ -40,6 +40,10 @@ public class XML_WriteContact {
         Element email = new Element("email");
         email.setText(emailadr);
         Contact.addContent(email);
+        
+        Element patientID = new Element("patientID");
+        patientID.setText(pID);
+        Contact.addContent(patientID);
         
         docContact.getRootElement().addContent(Contact);
     }

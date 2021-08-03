@@ -4,6 +4,7 @@ import vaccimate.auxiliary.Address;
 import vaccimate.auxiliary.Contact;
 import vaccimate.auxiliary.PdfCreator;
 import vaccimate.process.*;
+import vaccimate.save.XML_Return;
 
 
 
@@ -26,12 +27,14 @@ public class Patient extends User {
         this.allergies = allergies;
     }
 
-    public void setAppointment(int vaccCenter, CalendarManager calendar, Patient patient, int vaccine){
+    //void
+    public XML_Return setAppointment(int vaccCenter, CalendarManager calendar, Patient patient, int vaccine){
 
        // setting non plausible values so that setFollowUpAppointment only gets called if the first appointment was booked successfully.
        int day = 99999999;
        int slot = 99999999;
-
+       Appointment returnAppointment1 = null;//
+       Appointment returnAppointment2 = null;//
        search:
         for (int i = 0; i < calendar.getNumberOfDays(); i++){
             for (int j = 0; j < calendar.getDays().get(i)[vaccCenter].length; j++){
@@ -62,6 +65,7 @@ public class Patient extends User {
 
                     new PdfCreator().createConfirmationPdf(bookedAppointment);
                     System.out.println("Eine PDF mit der Terminbestätigung wurde erstellt.");
+                    returnAppointment1 = bookedAppointment;//
                     break search;
                 }
             }
@@ -69,13 +73,18 @@ public class Patient extends User {
                     "späteren Zeitpunkt erneut.");
         }
         if (day != 99999999 && slot != 99999999){
-            setFollowUpAppointment(vaccCenter, calendar, calendar.getDays().get(day)[vaccCenter][slot], day, slot);
+        	returnAppointment2 = setFollowUpAppointment(vaccCenter, calendar, calendar.getDays().get(day)[vaccCenter][slot], day, slot);
+        	// ohne returnAppointment2 =
         }
+        XML_Return returnAppointment  = new XML_Return(returnAppointment1, returnAppointment2);
+        return returnAppointment;//
     }
 
     // setting a corresponding second appointment after a set duration according to STIKO guidelines.
-    public void setFollowUpAppointment(int vaccCenter, CalendarManager calendar, Appointment firstAppointment, int day, int slot) throws
+    //void
+    public Appointment setFollowUpAppointment(int vaccCenter, CalendarManager calendar, Appointment firstAppointment, int day, int slot) throws
             IndexOutOfBoundsException {
+    	Appointment returnAppointment2 = null;//
         try{
             int nextDay = day + firstAppointment.getVaccine().getWaitingPeriod();
             calendar.getDays().get(nextDay)[vaccCenter][slot].setPatient(firstAppointment.getPatient());
@@ -94,12 +103,13 @@ public class Patient extends User {
 
             new PdfCreator().createConfirmationPdf(bookedAppointment);
             System.out.println("Eine PDF mit der Terminbestätigung für ihren Zweittermin wurde erstellt.");
-
+            returnAppointment2 = bookedAppointment;//
 
 
         } catch (IndexOutOfBoundsException e){
             System.out.println("Eine Vergabe eines Zweittermins ist zum jetzigen Zeitpunkt leider nicht möglich.");
         }
+		return returnAppointment2;//
 
     }
 
