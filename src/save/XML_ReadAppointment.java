@@ -1,4 +1,4 @@
-package vaccimate.save;
+package src.save;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,6 +1,6 @@
-package vaccimate.process;
+package src.process;
 
-import vaccimate.users.Patient;
+import src.users.Patient;
 
 public class Vaccine {
 

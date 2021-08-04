@@ -1,7 +1,7 @@
-package vaccimate.process;
+package src.process;
 
-import vaccimate.auxiliary.Address;
-import vaccimate.auxiliary.Contact;
+import src.auxiliary.Address;
+import src.auxiliary.Contact;
 
 public class VaccinationSite {
 

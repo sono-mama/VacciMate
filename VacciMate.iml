@@ -15,19 +15,12 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jdom-2.0.6" level="project" />
-    <orderEntry type="library" name="kernel-7.1.16" level="project" />
-    <orderEntry type="library" name="io-7.1.16" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" name="io-7.1.16" level="project" />
-    <orderEntry type="library" name="org.junit.jupiter:junit-jupiter:5.4.2" level="project" />
+    <orderEntry type="library" exported="" name="jdom-2.0.6" level="project" />
+    <orderEntry type="library" exported="" name="kernel-7.1.16" level="project" />
+    <orderEntry type="library" exported="" name="io-7.1.16" level="project" />
+    <orderEntry type="library" exported="" name="io-7.1.16" level="project" />
+    <orderEntry type="library" exported="" name="layout-7.1.16" level="project" />
+    <orderEntry type="library" exported="" name="slf4j-api-1.7.31" level="project" />
+    <orderEntry type="library" exported="" name="slf4j-simple-1.7.31" level="project" />
   </component>
 </module>

@@ -1,10 +1,13 @@
-package vaccimate.users;
+package src.users;
 
-import vaccimate.auxiliary.Address;
-import vaccimate.auxiliary.Contact;
-import vaccimate.auxiliary.PdfCreator;
-import vaccimate.process.*;
-import vaccimate.save.XML_Return;
+import src.auxiliary.Address;
+import src.auxiliary.Contact;
+import src.auxiliary.PdfCreator;
+import src.process.Appointment;
+import src.process.CalendarManager;
+import src.process.CodeManager;
+import src.process.Init;
+import src.save.XML_Return;
 
 
 
@@ -122,7 +125,7 @@ public class Patient extends User {
             appointment.setVaccineGiven(false);
             appointment.setPatient(new Patient("",""));
             appointment.setCode("");
-        } else if (appointment != null && appointment.getPatient() == null){
+        } else if (appointment != null){
             System.out.println("Fehler im Termincode.");
         }
     }

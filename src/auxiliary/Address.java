@@ -1,4 +1,4 @@
-package vaccimate.auxiliary;
+package src.auxiliary;
 
 public class Address {
 

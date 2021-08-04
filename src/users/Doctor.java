@@ -1,8 +1,8 @@
-package vaccimate.users;
+package src.users;
 
-import vaccimate.process.Appointment;
-import vaccimate.process.CalendarManager;
-import vaccimate.process.VaccinationSite;
+import src.process.Appointment;
+import src.process.CalendarManager;
+import src.process.VaccinationSite;
 
 public class Doctor extends Employee {
 
@@ -21,9 +21,9 @@ public class Doctor extends Employee {
         System.out.println("Patient: " + appointment.getPatient().getFirstName() + appointment.getPatient().getLastName());
         System.out.println("Alter: " + appointment.getPatient().getAge());
         System.out.println("Impfstoff: " + appointment.getVaccine().getName());
-        if(appointment.isPatientDataChecked() == true){
+        if(appointment.isPatientDataChecked()){
             System.out.println("Die Patientendaten wurden bestätigt.");
-            if (appointment.getPatient().isAllergies() == true){
+            if (appointment.getPatient().isAllergies()){
                 System.out.println("Der Patient hat angegeben eine Allergie zu haben. Bitte Rücksprache mit dem Patieten führen.");
             } else {
                 System.out.println("Der Patient hat keine Allergien.");

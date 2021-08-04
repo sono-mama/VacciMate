@@ -1,11 +1,11 @@
-package vaccimate.auxiliary;
+package src.auxiliary;
 
 import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 
-import vaccimate.process.Appointment;
+import src.process.Appointment;
 
 import java.io.*;
 import java.time.LocalDate;

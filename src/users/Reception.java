@@ -1,9 +1,9 @@
-package vaccimate.users;
+package src.users;
 
-import vaccimate.auxiliary.PdfCreator;
-import vaccimate.process.Appointment;
-import vaccimate.process.CalendarManager;
-import vaccimate.process.VaccinationSite;
+import src.auxiliary.PdfCreator;
+import src.process.Appointment;
+import src.process.CalendarManager;
+import src.process.VaccinationSite;
 
 import java.time.LocalDate;
 

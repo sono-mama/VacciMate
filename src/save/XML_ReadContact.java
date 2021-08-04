@@ -1,4 +1,4 @@
-package vaccimate.save;
+package src.save;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class XML_ReadContact {
 					}
 					
 					i++;
-					//Rückgabe noch offen
+					//Rï¿½ckgabe noch offen
 					// die Telefonnummer des Contacts
 					//telephoneNo = ((Element) oneContact.get(0)).getValue();
 					// System.out.println(telephoneNo);
@@ -124,7 +124,7 @@ public class XML_ReadContact {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			//Rückgabe noch offen
+			//Rï¿½ckgabe noch offen
 			//String[] arr = { telephoneNo, mobileNo, email }; // initializing array
 			//return arr;
 

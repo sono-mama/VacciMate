@@ -1,6 +1,6 @@
-package vaccimate.save;
+package src.save;
 
-import vaccimate.process.Appointment;
+import src.process.Appointment;
 
 public class XML_Return {
 

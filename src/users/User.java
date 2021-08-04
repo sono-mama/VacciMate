@@ -1,7 +1,7 @@
-package vaccimate.users;
+package src.users;
 
-import vaccimate.process.Appointment;
-import vaccimate.process.CalendarManager;
+import src.process.Appointment;
+import src.process.CalendarManager;
 
 import java.util.UUID;
 

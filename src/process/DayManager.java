@@ -1,4 +1,4 @@
-package vaccimate.process;
+package src.process;
 
 import java.time.LocalDate;
 

@@ -1,6 +1,6 @@
-package vaccimate.users;
+package src.users;
 
-import vaccimate.process.VaccinationSite;
+import src.process.VaccinationSite;
 
 public class Employee extends User {
 

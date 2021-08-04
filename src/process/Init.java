@@ -1,9 +1,9 @@
-package vaccimate.process;
+package src.process;
 
-import vaccimate.auxiliary.Address;
-import vaccimate.auxiliary.Contact;
-import vaccimate.users.Doctor;
-import vaccimate.users.Reception;
+import src.auxiliary.Address;
+import src.auxiliary.Contact;
+import src.users.Doctor;
+import src.users.Reception;
 
 public class Init {
 

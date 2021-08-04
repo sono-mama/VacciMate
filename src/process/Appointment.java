@@ -1,9 +1,8 @@
-package vaccimate.process;
+package src.process;
 
-import vaccimate.users.Patient;
+import src.users.Patient;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Appointment {
 
