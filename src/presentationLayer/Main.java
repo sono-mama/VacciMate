@@ -27,16 +27,6 @@ public class Main {
 		Doctor[] doctors = init.getDoctors();
 		CalendarManager calendar = new CalendarManager(90, LocalDate.now());
 
-		System.out.println("""
-				 _    _                       _  ______                     \s
-				| |  | |                     (_)|  ___ \\         _          \s
-				| |  | |  ____   ____   ____  _ | | _ | |  ____ | |_    ____\s
-				 \\ \\/ /  / _  | / ___) / ___)| || || || | / _  ||  _)  / _  )
-				  \\  /  ( ( | |( (___ ( (___ | || || || |( ( | || |__ ( (/ /\s
-				   \\/    \\_||_| \\____) \\____)|_||_||_||_| \\_||_| \\___) \\____)
-				                                                            \s
-				""");
-
 		int menuhelper = 0;
 		Patient patient0 = new Patient("0", "0");
 		Doctor doctor0 = new Doctor("", "", null);
@@ -188,10 +178,7 @@ public class Main {
 							case 2 -> { // View appointment, choice of PDF creation or cancelation
 								do {
 									System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
-									System.out.println("""
-											0 - zurueck
-											1 - Termin stornieren
-											2 - PDF erzeugen""");
+									System.out.println("0 - zurueck\n1 - Termin stornieren\n2 - Pdf erzeugen");
 									int numberShow = sc2.nextInt();
 									switch (numberShow) {
 										case 0 -> menuhelper = 1;
