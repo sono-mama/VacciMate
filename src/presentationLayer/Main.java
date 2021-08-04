@@ -232,6 +232,13 @@ public class Main {
 								Appointment bookedAppointment = patient0.getAppointmentFromCode(appointmentCodePDF, calendar);
 								if (bookedAppointment != null && bookedAppointment.getPatient() != null) {
 									// TO DO: Hier mÃ¼ssen die Patienten Daten auf der Konsole ausgegebe werden.
+									Patient bookedPatient = bookedAppointment.getPatient();
+									System.out.println("Zu Prüfende Patientendaten");
+									System.out.println("Name: "+bookedPatient.getFirstName()+" "+bookedPatient.getLastName());
+									System.out.println("Alter: "+bookedPatient.getAge());
+									System.out.println("Wohnort: "+ bookedPatient.getAddress().getCity()+", "+bookedPatient.getAddress().getPostalCode());
+									System.out.println("Strasse: "+ bookedPatient.getAddress().getStreetName()+" "+ bookedPatient.getAddress().getStreetNo());
+									System.out.println("Telefonnummer: " + bookedPatient.getContact().getTelephoneNo() + "\nMobilfunknummer: "+ bookedPatient.getContact().getMobileNo()+ "\nE-Mail: "+ bookedPatient.getContact().getEmail());
 									new PdfCreator().createConfirmationPdf(bookedAppointment);
 									System.out.println("Stimmen die Patientendaten ueberein?\n1 - ja\n2 - nein");
 									int numberConfirmationPatient = sc2.nextInt();
