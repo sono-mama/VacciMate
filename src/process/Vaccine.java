@@ -1,6 +1,6 @@
-package src.process;
+package process;
 
-import src.users.Patient;
+import users.Patient;
 
 public class Vaccine {
 

@@ -1,13 +1,13 @@
-package src.users;
+package users;
 
-import src.auxiliary.Address;
-import src.auxiliary.Contact;
-import src.auxiliary.PdfCreator;
-import src.process.Appointment;
-import src.process.CalendarManager;
-import src.process.CodeManager;
-import src.process.Init;
-import src.save.XML_Return;
+import auxiliary.Address;
+import auxiliary.Contact;
+import auxiliary.PdfCreator;
+import process.Appointment;
+import process.CalendarManager;
+import process.CodeManager;
+import process.Init;
+import save.XML_Return;
 
 
 

@@ -1,7 +1,7 @@
-package src.users;
+package users;
 
-import src.process.Appointment;
-import src.process.CalendarManager;
+import process.Appointment;
+import process.CalendarManager;
 
 import java.util.UUID;
 

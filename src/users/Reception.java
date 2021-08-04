@@ -1,9 +1,9 @@
-package src.users;
+package users;
 
-import src.auxiliary.PdfCreator;
-import src.process.Appointment;
-import src.process.CalendarManager;
-import src.process.VaccinationSite;
+import auxiliary.PdfCreator;
+import process.Appointment;
+import process.CalendarManager;
+import process.VaccinationSite;
 
 import java.time.LocalDate;
 

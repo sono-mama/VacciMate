@@ -1,8 +1,8 @@
-package src.users;
+package users;
 
-import src.process.Appointment;
-import src.process.CalendarManager;
-import src.process.VaccinationSite;
+import process.Appointment;
+import process.CalendarManager;
+import process.VaccinationSite;
 
 public class Doctor extends Employee {
 

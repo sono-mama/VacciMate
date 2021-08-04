@@ -1,4 +1,4 @@
-package src.auxiliary;
+package auxiliary;
 
 public class Contact {
 

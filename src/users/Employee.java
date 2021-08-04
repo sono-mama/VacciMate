@@ -1,6 +1,6 @@
-package src.users;
+package users;
 
-import src.process.VaccinationSite;
+import process.VaccinationSite;
 
 public class Employee extends User {
 

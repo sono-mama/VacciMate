@@ -1,4 +1,4 @@
-package src.presentationLayer;
+package presentationLayer;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,11 +9,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import org.jdom2.Document;
-
-import src.auxiliary.*;
-import src.process.*;
-import src.users.*;
-import src.save.*;
+import process.*;
+import save.*;
+import users.Doctor;
+import users.Patient;
+import users.Reception;
+import auxiliary.*;
 
 public class Main {
 

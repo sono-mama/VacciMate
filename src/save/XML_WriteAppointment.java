@@ -1,4 +1,4 @@
-package src.save;
+package save;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,7 +9,7 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import src.process.Vaccine;
+import process.Vaccine;
 
 public class XML_WriteAppointment {
 

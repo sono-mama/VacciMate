@@ -1,11 +1,11 @@
-package src.auxiliary;
+package auxiliary;
 
 import com.itextpdf.kernel.pdf.*;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 
-import src.process.Appointment;
+import process.Appointment;
 
 import java.io.*;
 import java.time.LocalDate;

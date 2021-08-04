@@ -1,9 +1,9 @@
-package src.process;
+package process;
 
-import src.auxiliary.Address;
-import src.auxiliary.Contact;
-import src.users.Doctor;
-import src.users.Reception;
+import auxiliary.Address;
+import auxiliary.Contact;
+import users.Doctor;
+import users.Reception;
 
 public class Init {
 

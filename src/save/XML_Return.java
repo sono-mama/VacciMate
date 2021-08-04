@@ -1,6 +1,6 @@
-package src.save;
+package save;
 
-import src.process.Appointment;
+import process.Appointment;
 
 public class XML_Return {
 

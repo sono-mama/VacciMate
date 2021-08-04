@@ -1,7 +1,7 @@
-package src.process;
+package process;
 
-import src.auxiliary.Address;
-import src.auxiliary.Contact;
+import auxiliary.Address;
+import auxiliary.Contact;
 
 public class VaccinationSite {
 
