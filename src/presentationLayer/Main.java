@@ -33,6 +33,7 @@ public class Main {
 		Vaccine vaccine0 = new Vaccine("", "", 0);
 		Scanner sc = new Scanner(System.in);
 		Scanner sc2 = new Scanner(System.in);
+		Scanner sc3 = new Scanner(System.in);
         do {
         	System.out.println("Bitte Funktion durch Eingabe der passenden Zahl waehlen");
         	System.out.println("0 - Programm beenden\n1 - Anmelden als Patient\n2 - Anmelden als Mitarbeiter\n3 - Anmelden als Arzt");
@@ -229,7 +230,7 @@ public class Main {
 							case 1 -> { // show appointment
 								System.out.println("Geben Sie bitte Ihren Termincode ein");
 								String appointmentCodePDF = sc2.nextLine();
-								Appointment bookedAppointment = patient0.getAppointmentFromCode(appointmentCodePDF, calendar);
+								Appointment bookedAppointment = receptionSelection.getAppointmentFromCode(appointmentCodePDF, calendar);
 								if (bookedAppointment != null && bookedAppointment.getPatient() != null) {
 									// TO DO: Hier müssen die Patienten Daten auf der Konsole ausgegebe werden.
 									Patient bookedPatient = bookedAppointment.getPatient();
@@ -280,19 +281,24 @@ public class Main {
 							case 0 -> menuhelper = 1;
 							case 1 -> { // set patient vaccine status
 								System.out.println("Geben Sie bitte Ihren Termincode ein");
-								String appointmentCodeStatus = sc2.nextLine();
-								if (doctor0.getPatientData(appointmentCodeStatus, calendar)) {
-									System.out.println("Die Impfung kann jetzt durchgefuehrt werden");
-									System.out.println("1 - Impfung abgeschlossen\n2 - Impfung abgebrochen");
-									int numberCompletionAppointment = sc2.nextInt();
-									if (numberCompletionAppointment == 1) {
-										System.out.println("Die Impfung wurde erfolgreich absolviert und der Termin ist abgearbeitet");
-										doctorSelection.setVaccineStatus(appointmentCodeStatus, calendar);
+								String appointmentCodeStatus = sc3.nextLine();
+								Appointment bookedAppointmentDoctor = doctorSelection.getAppointmentFromCode(appointmentCodeStatus, calendar);
+								if (bookedAppointmentDoctor != null && bookedAppointmentDoctor.getPatient() != null) {
+									if (doctorSelection.getPatientData(appointmentCodeStatus, calendar)) {
+										System.out.println("Die Impfung kann jetzt durchgefuehrt werden");
+										System.out.println("1 - Impfung abgeschlossen\n2 - Impfung abgebrochen");
+										int numberCompletionAppointment = sc2.nextInt();
+										if (numberCompletionAppointment == 1) {
+											System.out.println("Die Impfung wurde erfolgreich absolviert und der Termin ist abgearbeitet");
+											doctorSelection.setVaccineStatus(appointmentCodeStatus, calendar);
+										}
+										if (numberCompletionAppointment == 2) {
+											System.out.println("Die Impfung wurde abgebrochen");
+											menuhelper = 1;
+										}
 									}
-									if (numberCompletionAppointment == 2) {
-										System.out.println("Die Impfung wurde abgebrochen");
-										menuhelper = 1;
-									}
+								} else if (bookedAppointmentDoctor != null) {
+									System.out.println("Fehler im Termincode.");
 								}
 							}
 						}
