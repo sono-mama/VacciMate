@@ -14,7 +14,6 @@ public class DayManager {
     private int numberOfSites = 6;
     private int numberOfSlots = 30;
     private Appointment[][] appointments;
-    private int[] availability = new int[numberOfSites];
 
     public DayManager(LocalDate date) {
         appointments = new Appointment[numberOfSites][numberOfSlots];
@@ -22,9 +21,6 @@ public class DayManager {
             for (int j = 0; j < appointments[i].length; j++){
                 appointments[i][j] = new Appointment(date, j);
             }
-        }
-        for (int k = 0; k < numberOfSites; k++){
-            availability[k] = numberOfSlots;
         }
     }
 

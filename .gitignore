@@ -1,5 +1,5 @@
-/XML_Contact.xml
 /.idea/
 /out/
-
 /target/
+*pdf
+*xml

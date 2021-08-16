@@ -58,9 +58,8 @@ public class Main {
 								if (eligibility) {
 
 									XML_Return bookedAppointments = patient.setAppointment(vaccineCenterNumber, calendar, patient, vaccineNumber);
-									//ohne XML_Return bookedAppointments =
 
-									//Beginn Save
+									// provisional implementation of the saving of patient data as XML files
 
 									Document docPatient = null;
 									String PatientFilename = "XML_Patient.xml";
@@ -232,9 +231,8 @@ public class Main {
 								String appointmentCodePDF = sc2.nextLine();
 								Appointment bookedAppointment = receptionSelection.getAppointmentFromCode(appointmentCodePDF, calendar);
 								if (bookedAppointment != null && bookedAppointment.getPatient() != null) {
-									// TO DO: Hier mÃ¼ssen die Patienten Daten auf der Konsole ausgegebe werden.
 									Patient bookedPatient = bookedAppointment.getPatient();
-									System.out.println("Zu Prüfende Patientendaten");
+									System.out.println("Zu Prï¿½fende Patientendaten");
 									System.out.println("Name: "+bookedPatient.getFirstName()+" "+bookedPatient.getLastName());
 									System.out.println("Alter: "+bookedPatient.getAge());
 									System.out.println("Wohnort: "+ bookedPatient.getAddress().getCity()+", "+bookedPatient.getAddress().getPostalCode());
